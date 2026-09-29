@@ -104,7 +104,7 @@ $EDITOR ~/.config/opencode/opencode.json`, label: "WSL" }]
             "Start Pi, run `/model`, pick a NaviGator model, and press `Ctrl+S` to make it the default."
           ]
         } },
-        { note: "data", title: "Local or cloud models", text: "Local models run on HiPerGator and are approved for all UF data classes, including code that touches sensitive data. Cloud coding models, such as the GPT Codex and Claude families, are approved for open data only and need a [Toolkit team](https://docs.ai.it.ufl.edu/docs/navigator_toolkit/getting_started/request-new-team)." }
+        { note: "data", title: "Local or cloud models", text: "Local models run in UF datacenters and are approved for all UF data classes, including code that touches sensitive data. Cloud coding models, such as the GPT Codex and Claude families, are approved for open data only and need a [Toolkit team](https://docs.ai.it.ufl.edu/docs/navigator_toolkit/getting_started/request-new-team)." }
       ]
     },
     {

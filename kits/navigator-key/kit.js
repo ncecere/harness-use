@@ -105,7 +105,7 @@ source ~/.bashrc` }
         { table: {
           head: ["Where it runs", "Open", "Sensitive", "Restricted", "How you get it"],
           rows: [
-            ["Local (HiPerGator)", "Yes", "Yes", "Yes", "Included with personal keys"],
+            ["Local (UF datacenters)", "Yes", "Yes", "Yes", "Included with personal keys"],
             ["Cloud (Microsoft, Amazon, Google)", "Yes", "No", "No", "Through a Toolkit team with a UFIT billing ID"]
           ]
         } },

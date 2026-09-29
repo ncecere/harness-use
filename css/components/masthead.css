@@ -1,30 +1,21 @@
-/* ---------- utility bar + masthead ---------- */
-.utility {
-  background: var(--color-surface-inverse); color: var(--color-text-inverse);
-  font: 500 var(--text-xs)/1 var(--font-mono); letter-spacing: .06em; text-transform: uppercase;
-}
-.utility .wrap { display: flex; justify-content: space-between; gap: var(--space-4); padding-block: .55rem; }
-.utility a { color: var(--color-text-inverse); text-decoration: none; }
-.utility a:hover { text-decoration: underline; text-decoration-color: var(--color-accent); }
-
-.masthead { border-bottom: var(--border-width) solid var(--color-border); background: var(--color-surface); }
+/* ---------- masthead (dark blue, white type) ---------- */
+.masthead { background: var(--color-surface-inverse); color: var(--color-text-inverse); }
 .masthead .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-3) var(--space-5); padding-block: var(--space-4); }
 
-/* official UF logo, unaltered, with clear space; site name set apart by a rule */
+/* official UF logo (white and orange on blue), unaltered, with clear space; site name set apart by a rule */
 .brand { display: inline-flex; align-items: center; gap: 1.1rem; color: inherit; text-decoration: none; }
 .brand .uf-logo { display: block; width: clamp(150px, 16vw, 190px); height: auto; }
-.brand .site-name { display: flex; flex-direction: column; gap: var(--space-1); padding-left: 1.1rem; border-left: var(--border-width) solid var(--color-border); }
+.brand .site-name { display: flex; flex-direction: column; gap: var(--space-1); padding-left: 1.1rem; border-left: var(--border-width) solid rgb(255 255 255 / .35); }
 .brand .site-name b {
-  color: var(--color-heading);
+  color: var(--color-text-inverse);
   font: var(--display-weight) 1.35rem/1 var(--font-display); font-stretch: var(--display-stretch); text-transform: var(--display-case);
 }
-.brand .site-name small { color: var(--color-text-muted); font: 500 .66rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-label); }
+.brand .site-name small { color: var(--color-text-inverse); opacity: .85; font: 500 .66rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-label); }
 
 .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-5); font: 600 .76rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em; }
-.site-nav a { padding: .5em 0; border-bottom: 2px solid transparent; color: var(--color-label); text-decoration: none; }
-.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--color-primary); border-bottom-color: var(--color-accent); }
+.site-nav a { padding: .5em 0; border-bottom: 2px solid transparent; color: var(--color-text-inverse); text-decoration: none; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--color-text-inverse); border-bottom-color: var(--color-accent); }
 
 @media (max-width: 760px) {
-  .utility .wrap span:last-child { display: none; }
   .site-nav { flex-basis: 100%; }
 }
