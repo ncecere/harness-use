@@ -1,6 +1,6 @@
 # Harness Kits
 
-Step-by-step setup guides for AI workspaces at the University of Florida. Each kit connects a tool (OpenCode, Pi, Cline, Microsoft Copilot, NaviGator Chat) to NaviGator AI and walks through the setup as a numbered procedure.
+Step-by-step setup guides for AI workspaces at the University of Florida. Each kit connects a tool (OpenCode, Pi, Microsoft Copilot, NaviGator Chat) to NaviGator AI and walks through the setup as a numbered procedure.
 
 Plain HTML, CSS, and JavaScript. No build step, and no inline scripts, so it fits a strict Content Security Policy.
 
@@ -84,6 +84,6 @@ In template literals, avoid `${` in commands. Use `$VAR` or `$(...)` instead.
 
 Kits describe third-party tools that change often. Each `kit.js` lists its sources in a comment at the top and in `refs`. Before a semester, re-check:
 
-- install commands and config formats for OpenCode, Pi, and Cline;
+- install commands and config formats for OpenCode and Pi;
 - the NaviGator model list and data classifications;
 - the pinned research-skill release (`v2.69.0`) in `files/install-research-skills.sh` and the kits.

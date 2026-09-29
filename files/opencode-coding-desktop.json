@@ -1,0 +1,32 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": ["navigator"],
+  "model": "navigator/gpt-oss-120b",
+  "small_model": "navigator/gpt-oss-120b",
+  "provider": {
+    "navigator": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NaviGator AI Toolkit",
+      "options": {
+        "baseURL": "https://api.ai.it.ufl.edu/v1",
+        "apiKey": "{file:~/.config/navigator/key}"
+      },
+      "models": {
+        "gpt-oss-120b": { "name": "GPT-OSS 120B (local)" },
+        "meta-muse-glimmer-30b": { "name": "Meta Muse Glimmer 30B (local)" }
+      }
+    }
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": {
+      "*": "ask",
+      "git status*": "allow",
+      "git diff*": "allow",
+      "git log*": "allow",
+      "git push*": "deny"
+    },
+    "webfetch": "ask",
+    "websearch": "ask"
+  }
+}

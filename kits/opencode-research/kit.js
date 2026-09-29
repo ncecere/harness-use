@@ -5,11 +5,12 @@
    and a September 2026 demo run against NaviGator AI. */
 window.KIT = {
   slug: "opencode-research",
-  summary: "OpenCode is an open-source AI agent that runs in your terminal. With research skills, house rules, and a NaviGator model, it can search scholarly databases, download official documents, pull tables into CSV files, build a bibliography, and audit its own claims.",
+  summary: "OpenCode is an open-source AI agent you can run in a terminal or as a desktop app. With research skills, house rules, and a NaviGator model, it can search scholarly databases, download official documents, pull tables into CSV files, build a bibliography, and audit its own claims. Pick **OpenCode** (terminal) or **OpenCode Desktop** with the Tool switch; the steps change to match. These kits use OpenCode 1.x, the current stable release.",
   os: true,
+  variants: [{ id: "terminal", label: "OpenCode" }, { id: "desktop", label: "OpenCode Desktop" }],
   parts: [
     "Your NaviGator key from [Kit 00](../navigator-key/)",
-    "macOS or Linux. On Windows, use WSL2.",
+    "macOS or Linux. On Windows, use WSL2 for the terminal version; OpenCode Desktop runs natively.",
     "Git and Python 3.11 or later",
     "A research question with public sources to practice on"
   ],
@@ -25,21 +26,40 @@ window.KIT = {
       title: "Install OpenCode",
       minutes: 5,
       blocks: [
-        { os: {
-          mac: [
-            "Install with Homebrew, or use the install script.",
-            { code: `brew install anomalyco/tap/opencode` }
+        { variant: {
+          terminal: [
+            { os: {
+              mac: [
+                "Install with Homebrew, or use the install script.",
+                { code: `brew install anomalyco/tap/opencode` }
+              ],
+              linux: [
+                { code: `curl -fsSL https://opencode.ai/install | bash` }
+              ],
+              win: [
+                "UF recommends running the terminal version in **WSL2** on Windows. Open your WSL terminal, choose **Linux / WSL** above, and follow those commands. You can also install with npm:",
+                { code: `npm install -g opencode-ai`, label: "PowerShell" }
+              ]
+            } },
+            "Confirm the install:",
+            { code: `opencode --version` }
           ],
-          linux: [
-            { code: `curl -fsSL https://opencode.ai/install | bash` }
-          ],
-          win: [
-            "UF recommends running OpenCode in **WSL2** on Windows. Open your WSL terminal, choose **Linux / WSL** above, and follow those commands. You can also install with npm:",
-            { code: `npm install -g opencode-ai`, label: "PowerShell" }
+          desktop: [
+            "OpenCode Desktop is the same agent in a desktop window. It runs OpenCode in the background and reads the same configuration files as the terminal version. The desktop app is labeled beta.",
+            { os: {
+              mac: [
+                "Install with Homebrew, or download the `.dmg` for Apple silicon or Intel from [opencode.ai/download](https://opencode.ai/download).",
+                { code: `brew install --cask opencode-desktop` }
+              ],
+              linux: [
+                "Download the `.deb`, `.rpm`, or AppImage from [opencode.ai/download](https://opencode.ai/download) and install it with your package manager."
+              ],
+              win: [
+                "Download the Windows installer from [opencode.ai/download](https://opencode.ai/download) and run it. OpenCode Desktop needs the Microsoft Edge **WebView2 Runtime**, which most Windows computers already have."
+              ]
+            } }
           ]
-        } },
-        "Confirm the install:",
-        { code: `opencode --version` }
+        } }
       ]
     },
     {
@@ -51,6 +71,7 @@ window.KIT = {
         { code: `mkdir -p ~/research/my-project && cd ~/research/my-project
 git init
 mkdir -p sources outputs scripts` },
+        { variant: { desktop: ["Using the desktop app? Run these commands in Terminal (or PowerShell on Windows, without `git init` if Git isn't installed). You'll open this folder in OpenCode Desktop in step 6."] } },
         { ul: [
           "`sources/` holds documents you or the agent download.",
           "`outputs/` holds extracted data, notes, bibliographies, and reports.",
@@ -63,8 +84,25 @@ mkdir -p sources outputs scripts` },
       title: "Connect OpenCode to NaviGator",
       minutes: 4,
       blocks: [
-        "Create `opencode.json` in the workspace, or download the starter file.",
-        { files: [{ href: "files/opencode-research.json", name: "opencode.json" }] },
+        { variant: {
+          terminal: [
+            "Create `opencode.json` in the workspace, or download the starter file.",
+            { files: [{ href: "files/opencode-research.json", name: "opencode.json" }] }
+          ],
+          desktop: [
+            "Apps you open from the Dock, Start menu, or app launcher don't read your terminal's settings, so OpenCode Desktop can't see `NAVIGATOR_TOOLKIT_API_KEY`. Give it the key in a file only you can read:",
+            { os: {
+              mac: [{ code: `mkdir -p ~/.config/navigator && chmod 700 ~/.config/navigator
+security find-generic-password -a "$USER" -s navigator-toolkit -w > ~/.config/navigator/key
+chmod 600 ~/.config/navigator/key` }],
+              linux: ["If you followed Kit 00 on Linux, the key is already in `~/.config/navigator/key`. Nothing to do here."],
+              win: [{ code: `New-Item -ItemType Directory -Force "$env:USERPROFILE\.config\navigator" | Out-Null
+Set-Content -NoNewline -Path "$env:USERPROFILE\.config\navigator\key" -Value $env:NAVIGATOR_TOOLKIT_API_KEY`, label: "PowerShell" }]
+            } },
+            "Then create `opencode.json` in the workspace. It's the same as the terminal version except that `apiKey` reads the file: `\"apiKey\": \"{file:~/.config/navigator/key}\"`. Download the desktop starter:",
+            { files: [{ href: "files/opencode-research-desktop.json", name: "opencode.json" }] }
+          ]
+        } },
         { code: `{
   "$schema": "https://opencode.ai/config.json",
   "enabled_providers": ["navigator"],
@@ -94,7 +132,7 @@ mkdir -p sources outputs scripts` },
 }`, file: "opencode.json" },
         { ul: [
           "`enabled_providers` limits OpenCode to NaviGator, so work can't go to another AI service by accident.",
-          "`{env:NAVIGATOR_TOOLKIT_API_KEY}` reads the key you stored in Kit 00. The key never appears in the file.",
+          "`{env:NAVIGATOR_TOOLKIT_API_KEY}` reads the key you stored in Kit 00, so the key never appears in the file. (The desktop version uses `{file:...}` instead.)",
           "`permission` makes OpenCode ask before it runs commands, fetches a URL, or searches the web."
         ] },
         { note: "tip", title: "Choosing a model", text: "`meta-muse-glimmer-30b` is a local model and handled the multi-step research demo this kit is based on. You can list any model your key includes. Agent work needs a model that handles tool calls well, and larger models usually do better on long investigations." }
@@ -170,10 +208,17 @@ done` },
       title: "Start OpenCode and check the setup",
       minutes: 3,
       blocks: [
-        "From the workspace, confirm OpenCode found the skills, then start it:",
-        { code: `opencode debug skill | grep '"location":'
+        { variant: {
+          terminal: [
+            "From the workspace, confirm OpenCode found the skills, then start it:",
+            { code: `opencode debug skill | grep '"location":'
 opencode` },
-        "Inside OpenCode, run `/models` to confirm the NaviGator model is selected, then ask:",
+            "Inside OpenCode, run `/models` to confirm the NaviGator model is selected, then ask:"
+          ],
+          desktop: [
+            "Open OpenCode Desktop, open the workspace folder as a project, and start a session. Make sure the NaviGator model is selected for the session, then ask:"
+          ]
+        } },
         { prompt: "What research skills and tools are available in this project?" },
         { note: "check", text: "The answer lists the skills you installed, and the model shown is your NaviGator model." }
       ]
@@ -212,7 +257,7 @@ would be needed to verify it.` },
         { prompt: `Build a custom OpenCode plugin that does OCR on PDFs and images.
 Add it to this project, test it, and document it. I will restart OpenCode after.` },
         "OpenCode checked what was installed, read the plugin docs, wrote the plugin, tested it on a downloaded PDF, and wrote a README. After a restart, the agent had a new `ocr_document` tool.",
-        "To use the same plugin, save these files in `.opencode/plugins/` (and `package.json` in `.opencode/`), then restart OpenCode:",
+        "To use the same plugin, save these files in `.opencode/plugins/` (and `package.json` in `.opencode/`), then restart OpenCode. In the desktop app, fully quit and reopen it.",
         { files: [
           { href: "files/ocr.ts", name: "ocr.ts" },
           { href: "files/ocr-helper.swift", name: "ocr-helper.swift" },
@@ -227,10 +272,14 @@ Add it to this project, test it, and document it. I will restart OpenCode after.
     ["The model doesn't appear in `/models`", "The model ID must match one from your key's model list exactly, and `NAVIGATOR_TOOLKIT_API_KEY` must be set in the terminal that started OpenCode."],
     ["Skills don't appear", "Run `opencode debug skill`. Each skill needs its own folder at `.agents/skills/<name>/SKILL.md`. Restart OpenCode after adding skills."],
     ["A skill fails on a missing tool", "Read its `SKILL.md` for requirements. Many need Python 3.11 or later; some need `uv` or a service-specific CLI."],
-    ["The agent stops partway through a long task", "Ask it to continue its to-do list, or split the work into smaller numbered steps."]
+    ["The agent stops partway through a long task", "Ask it to continue its to-do list, or split the work into smaller numbered steps."],
+    ["OpenCode Desktop: the NaviGator model fails to authenticate", "Check that `~/.config/navigator/key` exists and holds your key, and that `opencode.json` uses `{file:~/.config/navigator/key}`. Then fully quit and reopen the app."],
+    ["OpenCode Desktop: blank window or it won't start", "Fully quit and relaunch. On macOS, try **OpenCode › Reload Webview**. On Windows, install or update the WebView2 Runtime. If it started after adding a plugin, move `.opencode/plugins/` aside and try again."]
   ],
   refs: [
     ["OpenCode docs", "https://opencode.ai/docs/"],
+    ["OpenCode downloads (terminal and desktop)", "https://opencode.ai/download"],
+    ["OpenCode troubleshooting (includes Desktop)", "https://opencode.ai/docs/troubleshooting/"],
     ["OpenCode with NaviGator (UF docs)", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/integrations/opencode"],
     ["OpenCode skills", "https://opencode.ai/docs/skills/"],
     ["OpenCode plugins", "https://opencode.ai/docs/plugins/"],

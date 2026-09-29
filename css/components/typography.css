@@ -30,3 +30,8 @@
 
 .lede { max-width: 44ch; margin: var(--space-5) 0 var(--space-6); font-size: clamp(1.08rem, 1.4vw, var(--text-lg)); line-height: 1.55; }
 .source { margin: var(--space-3) 0 0; color: var(--color-text-muted); font-size: var(--text-sm); }
+/* on phones the section number sits above the heading */
+@media (max-width: 640px) {
+  .section-head { grid-template-columns: 1fr; }
+  .section-head .sec { grid-row: auto; font-size: 2.4rem; }
+}

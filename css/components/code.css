@@ -4,9 +4,12 @@
   display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: .45rem .5rem .45rem .85rem;
   border-bottom: var(--border-width) solid rgba(255, 255, 255, .14); background: color-mix(in srgb, var(--color-code-bg) 88%, white);
 }
-.code-bar .label { color: var(--color-text-inverse); opacity: .92; }
+.code-bar .label { color: var(--color-text-inverse); opacity: .92; text-transform: none; letter-spacing: .04em; }  /* keep 'macOS' and file names as written */
 .code-bar .label b { color: var(--color-code-accent); font-weight: 700; }
-.code pre { margin: 0; padding: var(--space-4) 1.1rem; overflow-x: auto; color: var(--color-code-text); font: 400 .86rem/1.65 var(--font-mono); tab-size: 2; }
+.code pre {
+  margin: 0; padding: var(--space-4) 1.1rem; overflow-x: auto; color: var(--color-code-text); font: 400 .86rem/1.65 var(--font-mono); tab-size: 2;
+  white-space: pre-wrap; overflow-wrap: anywhere;  /* long commands wrap instead of hiding; Copy still copies the exact text */
+}
 .code pre code { padding: 0; border: 0; background: none; color: inherit; font: inherit; }
 
 .copy {
@@ -25,3 +28,4 @@
 .code.prompt .copy:hover { background: var(--color-surface); }
 .code.prompt .copy[data-copied] { border-color: var(--color-yes); color: var(--color-yes); }
 .code-bar .label b { text-transform: none; letter-spacing: .02em; }  /* file names keep their real case */
+.code pre:focus-visible { outline: 3px solid var(--color-focus); outline-offset: -3px; }

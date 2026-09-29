@@ -51,20 +51,20 @@
       const id = `code-${++codeId}`;
       const where = ctx.os ? ` · ${ctx.os.map(o => osName[o]).join(" / ")}` : "";
       const label = b.file ? `<b>${esc(b.file)}</b>${b.label ? ` · ${esc(b.label)}` : ""}` : `${esc(b.label || "Terminal")}${where}`;
-      return `<div class="code"><div class="code-bar"><span class="label" id="${id}-l">${label}</span><button type="button" class="copy" data-copy="${id}" aria-describedby="${id}-l">Copy</button></div><pre id="${id}"><code>${esc(b.code.replace(/^\n+|\s+$/g, ""))}</code></pre></div>`;
+      return `<div class="code"><div class="code-bar"><span class="label" id="${id}-l">${label}</span><button type="button" class="copy" data-copy="${id}" aria-describedby="${id}-l">Copy</button></div><pre id="${id}" tabindex="0" aria-labelledby="${id}-l"><code>${esc(b.code.replace(/^\n+|\s+$/g, ""))}</code></pre></div>`;
     }
     if (b.prompt !== undefined) {
       const id = `code-${++codeId}`;
-      return `<div class="code prompt"><div class="code-bar"><span class="label" id="${id}-l">${esc(b.label || "Prompt")}</span><button type="button" class="copy" data-copy="${id}" aria-describedby="${id}-l">Copy</button></div><pre id="${id}"><code>${esc(b.prompt.trim())}</code></pre></div>`;
+      return `<div class="code prompt"><div class="code-bar"><span class="label" id="${id}-l">${esc(b.label || "Prompt")}</span><button type="button" class="copy" data-copy="${id}" aria-describedby="${id}-l">Copy</button></div><pre id="${id}" tabindex="0" aria-labelledby="${id}-l"><code>${esc(b.prompt.trim())}</code></pre></div>`;
     }
     if (b.note) {
       const title = b.title || { data: "Data", caution: "Caution", tip: "Tip", check: "You're done when" }[b.note];
       const body = b.blocks ? b.blocks.map(x => block(x, ctx)).join("") : `<p>${inline(b.text)}</p>`;
-      return `<aside class="callout" data-kind="${b.note}"><p class="callout-title">${esc(title)}</p>${body}</aside>`;
+      return `<div class="callout" role="note" data-kind="${b.note}"><p class="callout-title">${esc(title)}</p>${body}</div>`;
     }
     if (b.table) {
       const { head, rows } = b.table;
-      return `<div class="table-wrap"><table class="spec-table"><thead><tr>${head.map(h => `<th scope="col">${inline(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => i ? `<td>${inline(c)}</td>` : `<th scope="row">${inline(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      return `<div class="table-wrap" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table class="spec-table"><thead><tr>${head.map(h => `<th scope="col">${inline(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => i ? `<td>${inline(c)}</td>` : `<th scope="row">${inline(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`;
     }
     if (b.files) return `<ul class="downloads">${b.files.map(f => `<li><a href="${ROOT}${f.href}" download="${esc(f.name)}">${esc(f.name)}</a></li>`).join("")}</ul>`;
     if (b.os) {
@@ -117,6 +117,7 @@
     <div class="segmented" role="group" aria-label="Operating system"><span class="seg-label" aria-hidden="true">System</span><span class="options">${OS.map(([id, label]) => `<button type="button" data-set-os="${id}" aria-pressed="false">${label}</button>`).join("")}</span></div>` : "";
   const bar = `
     <div class="kit-bar"><div class="wrap">
+      <p class="bar-title"><b>${esc(meta.code)}</b> ${esc(meta.title)}</p>
       ${variantCtl}${osCtl}
       <p class="progress" aria-live="polite"><span id="progress-text">0 of ${total} steps</span><span class="meter" aria-hidden="true"><i id="progress-bar"></i></span></p>
     </div></div>`;
@@ -147,7 +148,7 @@
         <h2>Kit complete</h2>
         <p>Every step is checked off in this browser. <button type="button" class="reset" id="reset">Clear my checkmarks</button></p>
       </div>
-      ${KIT.trouble?.length ? `<section aria-labelledby="t-head"><h2 class="end-head" id="t-head">Troubleshooting</h2><div class="trouble">${KIT.trouble.map(([q, a]) => `<details><summary>${inline(q)}</summary><div class="fix"><p>${inline(a)}</p></div></details>`).join("")}</div></section>` : ""}
+      ${KIT.trouble?.length ? `<section aria-labelledby="t-head"><h2 class="end-head" id="t-head">Troubleshooting</h2><div class="trouble">${KIT.trouble.map(([q, a]) => `<details><summary><span>${inline(q)}</span></summary><div class="fix"><p>${inline(a)}</p></div></details>`).join("")}</div></section>` : ""}
       ${KIT.refs?.length ? `<section aria-labelledby="r-head"><h2 class="end-head" id="r-head">References</h2><ul class="refs">${KIT.refs.map(([l, u]) => `<li><a href="${u}">${esc(l)}</a></li>`).join("")}</ul></section>` : ""}
       ${nextKits.length ? `<section aria-labelledby="n-head"><h2 class="end-head" id="n-head">Next kits</h2><ul class="next-kits">${nextKits.map(k => `<li><a href="${ROOT}kits/${k.slug}/"><span class="kit-code">${esc(k.code)}</span><span class="t">${esc(k.title)}</span><span class="d">${esc(k.tagline)}</span></a></li>`).join("")}</ul></section>` : ""}
     </div>`;

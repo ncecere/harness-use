@@ -3,9 +3,9 @@
    docs.ai.it.ufl.edu integrations for OpenCode and Pi. */
 window.KIT = {
   slug: "terminal-coding",
-  summary: "A terminal coding agent reads your code, proposes a plan, edits files, and runs your tests. Pick **OpenCode** or **Pi** with the switch above; the steps change to match. Either way, git is your undo button.",
+  summary: "A coding agent reads your code, proposes a plan, edits files, and runs your tests. Pick **OpenCode**, **OpenCode Desktop**, or **Pi** with the Tool switch; the steps change to match. Whichever you choose, git is your undo button.",
   os: true,
-  variants: [{ id: "opencode", label: "OpenCode" }, { id: "pi", label: "Pi" }],
+  variants: [{ id: "opencode", label: "OpenCode" }, { id: "desktop", label: "OpenCode Desktop" }, { id: "pi", label: "Pi" }],
   parts: [
     "Your NaviGator key from [Kit 00](../navigator-key/)",
     "A project in a git repository",
@@ -30,6 +30,11 @@ window.KIT = {
             linux: [{ code: `curl -fsSL https://opencode.ai/install | bash` }],
             win: ["UF recommends WSL2 on Windows. You can also install with npm:", { code: `npm install -g opencode-ai`, label: "PowerShell" }]
           } }, { code: `opencode --version` }],
+          desktop: [{ os: {
+            mac: [{ code: `brew install --cask opencode-desktop` }, "Or download the `.dmg` from [opencode.ai/download](https://opencode.ai/download)."],
+            linux: ["Download the `.deb`, `.rpm`, or AppImage from [opencode.ai/download](https://opencode.ai/download)."],
+            win: ["Download and run the Windows installer from [opencode.ai/download](https://opencode.ai/download). It needs the Microsoft Edge WebView2 Runtime."]
+          } }],
           pi: [{ os: {
             unix: [{ code: `curl -fsSL https://pi.dev/install.sh | sh` }],
             win: ["Install [Git for Windows](https://git-scm.com/download/win), then:", { code: `npm install -g --ignore-scripts @earendil-works/pi-coding-agent`, label: "PowerShell" }]
@@ -85,6 +90,19 @@ $EDITOR ~/.config/opencode/opencode.json`, label: "WSL" }]
   }
 }`, file: "~/.config/opencode/opencode.json" }
           ],
+          desktop: [
+            "OpenCode Desktop reads the same global config as the terminal version, but apps opened from the Dock or Start menu can't see `NAVIGATOR_TOOLKIT_API_KEY`. Put the key in a file only you can read:",
+            { os: {
+              mac: [{ code: `mkdir -p ~/.config/navigator && chmod 700 ~/.config/navigator
+security find-generic-password -a "$USER" -s navigator-toolkit -w > ~/.config/navigator/key
+chmod 600 ~/.config/navigator/key` }],
+              linux: ["If you followed Kit 00 on Linux, the key is already in `~/.config/navigator/key`."],
+              win: [{ code: `New-Item -ItemType Directory -Force "$env:USERPROFILE\\.config\\navigator" | Out-Null
+Set-Content -NoNewline -Path "$env:USERPROFILE\\.config\\navigator\\key" -Value $env:NAVIGATOR_TOOLKIT_API_KEY`, label: "PowerShell" }]
+            } },
+            "Save the desktop starter as `~/.config/opencode/opencode.json` (on Windows, `%USERPROFILE%\\.config\\opencode\\opencode.json`). It matches the OpenCode config except that `apiKey` is `{file:~/.config/navigator/key}`. Then fully quit and reopen the app.",
+            { files: [{ href: "files/opencode-coding-desktop.json", name: "opencode.json" }] }
+          ],
           pi: [
             "Add NaviGator to Pi's `models.json`. It applies in every folder.",
             { files: [{ href: "files/pi-models.json", name: "models.json" }] },
@@ -131,6 +149,9 @@ git switch -c ai/short-task-name` },
         "An `AGENTS.md` at the project root tells the agent how to build, test, and behave in this codebase.",
         { variant: {
           opencode: ["Start OpenCode in the project and run `/init`. It reads the project and writes an `AGENTS.md`. Review it and fill in anything it missed.", { code: `opencode` }],
+          desktop: ["Open the project folder in OpenCode Desktop and start a session. Run `/init`, or ask it to write the file:", { prompt: `Read this repository and write an AGENTS.md with the install, test, and
+lint commands, the code style it uses, and folders I should not edit.
+Keep it short.` }],
           pi: ["Start Pi in the project and ask it to write one:", { code: `pi` }, { prompt: `Read this repository and write an AGENTS.md with the install, test, and
 lint commands, the code style it uses, and folders I should not edit.
 Keep it short.` }]
@@ -156,11 +177,15 @@ Keep it short.` }]
         { variant: {
           opencode: [
             "The config from step 2 lets OpenCode edit files but asks before most shell commands, and it never lets the agent push. Adjust `permission` as you learn what you're comfortable with.",
-            "OpenCode also has two built-in modes. Press **Tab** to switch between them:",
+            "OpenCode also has two built-in agents. In the terminal, press **Tab** to switch between them:",
             { ul: [
               "**Plan** asks before any edit or command. Use it to explore a codebase and agree on an approach.",
               "**Build** has the tools enabled. Switch to it once the plan looks right."
             ] }
+          ],
+          desktop: [
+            "OpenCode Desktop uses the same `permission` settings from the config in step 2: it can edit files, asks before most shell commands, and never pushes.",
+            "It also has the same two built-in agents. Choose **Plan** to explore a codebase and agree on an approach without changes, then switch to **Build** to make them."
           ],
           pi: [
             "Pi doesn't ask before tool calls. Your guardrails are the branch from step 3, your review, and how you start Pi:",
@@ -217,11 +242,12 @@ git commit -m "Describe the change"` },
   ],
   refs: [
     ["OpenCode agents (Plan and Build)", "https://opencode.ai/docs/agents/"],
+    ["OpenCode downloads (terminal and desktop)", "https://opencode.ai/download"],
     ["OpenCode permissions", "https://opencode.ai/docs/permissions/"],
     ["OpenCode with NaviGator (UF docs)", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/integrations/opencode"],
     ["Pi with NaviGator (UF docs)", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/integrations/pi/"],
     ["Pi source and docs", "https://github.com/earendil-works/pi"],
     ["NaviGator models", "https://docs.ai.it.ufl.edu/docs/navigator_models/"]
   ],
-  next: ["vscode-cline", "opencode-research"]
+  next: ["opencode-research", "pi-research"]
 };

@@ -49,7 +49,7 @@ window.Icons = (() => {
       <g>
         <rect x="176" y="26" width="128" height="206" rx="3" class="ln fill-t"/>
         <text x="188" y="48" class="txt">HARNESS</text>
-        <text x="188" y="74" class="txt">OpenCode</text><text x="188" y="90" class="txt">Pi</text>
+        <text x="188" y="74" class="txt">OpenCode</text><text x="188" y="90" class="txt">OpenCode</text><text x="196" y="104" class="txt">Desktop</text><text x="188" y="120" class="txt">Pi</text>
         <rect x="188" y="140" width="104" height="22" rx="2" class="ln fill-p"/><text x="198" y="155" class="txt-o">skills</text>
         <rect x="188" y="168" width="104" height="22" rx="2" class="ln fill-p"/><text x="198" y="183" class="txt-o">plugins</text>
         <rect x="188" y="196" width="104" height="22" rx="2" class="ln fill-p"/><text x="198" y="211" class="txt-o">permissions</text>
@@ -69,7 +69,7 @@ window.Icons = (() => {
       <path d="M142 132h34" class="hl flow"/><path d="M304 132h34" class="hl flow"/><path d="M240 232v38" class="ln flow"/>
       <path d="M170 128l6 4l-6 4M332 128l6 4l-6 4" class="hl"/>
       ${[[159, 118, "1"], [321, 118, "2"], [256, 252, "3"]].map(([x, y, n]) => `<circle cx="${x}" cy="${y}" r="9" class="fill-o"/><text x="${x}" y="${y + 4}" text-anchor="middle" class="txt txt-w">${n}</text>`).join("")}`,
-      "Diagram: your files connect to a harness such as OpenCode or Pi, which adds skills, plugins, and permissions. The harness sends model requests to NaviGator AI Toolkit, where local models in UF datacenters accept all data classes and cloud models accept open data only. Web searches and outside APIs leave UF and are for open data only.")
+      "Diagram: your files connect to a harness such as OpenCode, OpenCode Desktop, or Pi, which adds skills, plugins, and permissions. The harness sends model requests to NaviGator AI Toolkit, where local models in UF datacenters accept all data classes and cloud models accept open data only. Web searches and outside APIs leave UF and are for open data only.")
   };
 
   function paint(root = document) {

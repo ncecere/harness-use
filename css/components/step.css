@@ -15,7 +15,7 @@
 /* step content */
 .step-body { max-width: 74ch; }
 .step-body > * + * { margin-top: var(--space-4); }
-.step-body p { margin: 0; }
+:where(.step-body p) { margin: 0; }  /* zero specificity, so the "* + *" spacing rule above wins */
 .step-body ul, .step-body ol { margin-bottom: 0; padding-left: 1.3rem; }
 .step-body li + li { margin-top: var(--space-2); }
 .step-body li::marker { color: var(--color-primary); font-weight: 700; }
@@ -24,7 +24,9 @@
 .step-body .spec-table th, .step-body .spec-table td { padding: .7rem .85rem; }
 .step-body .spec-table tbody th { color: var(--color-heading); font-weight: 600; }
 
-.downloads { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+:where(.downloads) { margin: 0; }  /* zero specificity: the step spacing rule still adds space above */
+.downloads { display: flex; flex-wrap: wrap; gap: var(--space-2); padding: 0; list-style: none; }
+.step-body .downloads li { margin-top: 0; }
 .downloads a {
   display: inline-flex; align-items: center; gap: var(--space-2); padding: .5em .75em;
   border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius);

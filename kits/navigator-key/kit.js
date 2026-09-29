@@ -70,7 +70,8 @@ source ~/.bashrc` }
             "Close PowerShell and open a new window so the variable loads."
           ]
         } },
-        { note: "caution", text: "Treat the key like a password. Don't paste it into a chat, a prompt, a document, or a support ticket." }
+        { note: "caution", text: "Treat the key like a password. Don't paste it into a chat, a prompt, a document, or a support ticket." },
+        { note: "tip", title: "Using OpenCode Desktop?", text: "Desktop apps don't read terminal settings. The OpenCode kits show how to give the desktop app your key in a file only you can read." }
       ]
     },
     {
@@ -142,5 +143,5 @@ source ~/.bashrc` }
     ["Request a Toolkit team", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/getting_started/request-new-team"],
     ["Toolkit FAQ", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/FAQ"]
   ],
-  next: ["opencode-research", "terminal-coding", "vscode-cline"]
+  next: ["opencode-research", "pi-research", "terminal-coding"]
 };

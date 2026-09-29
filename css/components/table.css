@@ -18,3 +18,8 @@
 .spec-table .no { color: var(--color-text-muted); }
 .spec-table .no::before { content: "○ " / ""; color: var(--color-no); }
 @media (max-width: 640px) { .spec-table { font-size: .9rem; } .spec-table th, .spec-table td { padding: .75rem .8rem; } }
+/* on phones, keep columns readable and let the table scroll sideways */
+@media (max-width: 700px) {
+  .spec-table { min-width: 640px; }
+  .table-wrap { position: relative; }
+}

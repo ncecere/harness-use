@@ -23,7 +23,7 @@ window.SITE = {
 window.SHELVES = [
   { id: "start", n: "0", title: "Start here", blurb: "One key unlocks every kit that talks to NaviGator AI Toolkit." },
   { id: "research", n: "1", title: "Research", blurb: "Agents that search scholarly sources, pull data from PDFs, and check their own claims." },
-  { id: "coding", n: "2", title: "Coding", blurb: "Coding agents in your terminal or your editor, with git as the undo button." },
+  { id: "coding", n: "2", title: "Coding", blurb: "Coding agents in your terminal or on your desktop, with git as the undo button." },
   { id: "office", n: "3", title: "Office work", blurb: "Everyday writing, email, documents, and meetings, with the right tool for your data." }
 ];
 
@@ -46,12 +46,12 @@ window.KITS = [
     code: "KIT 10",
     shelf: "research",
     title: "OpenCode for Research",
-    tagline: "A terminal research agent with scholarly skills, citation checks, and an audit step.",
+    tagline: "A research agent, in the terminal or the desktop app, with scholarly skills, citation checks, and an audit step.",
     level: "Intermediate",
     minutes: 45,
     steps: 8,
     icon: "research",
-    tools: ["OpenCode", "Research skills"],
+    tools: ["OpenCode", "OpenCode Desktop", "Research skills"],
     ready: true
   },
   {
@@ -71,26 +71,13 @@ window.KITS = [
     slug: "terminal-coding",
     code: "KIT 20",
     shelf: "coding",
-    title: "Coding in the Terminal",
-    tagline: "OpenCode or Pi as a pair programmer that plans, edits, and runs your tests.",
+    title: "Coding with an AI Agent",
+    tagline: "OpenCode, OpenCode Desktop, or Pi as a pair programmer that plans, edits, and runs your tests.",
     level: "Intermediate",
     minutes: 30,
     steps: 7,
     icon: "terminal",
-    tools: ["OpenCode", "Pi", "git"],
-    ready: true
-  },
-  {
-    slug: "vscode-cline",
-    code: "KIT 21",
-    shelf: "coding",
-    title: "Coding in VS Code",
-    tagline: "Cline in the editor you already use, with plan mode and checkpoints.",
-    level: "Beginner",
-    minutes: 20,
-    steps: 6,
-    icon: "editor",
-    tools: ["VS Code", "Cline"],
+    tools: ["OpenCode", "OpenCode Desktop", "Pi", "git"],
     ready: true
   },
   {
