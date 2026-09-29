@@ -184,7 +184,7 @@ Set-Content -NoNewline -Path "$env:USERPROFILE\.config\navigator\key" -Value $en
   https://github.com/K-Dense-AI/scientific-agent-skills.git /tmp/sci-skills
 mkdir -p .agents/skills
 for s in paper-lookup citation-management database-lookup \\
-         scientific-critical-thinking scientific-writing pdf markitdown; do
+         scientific-critical-thinking scientific-writing liteparse markitdown; do
   cp -R "/tmp/sci-skills/skills/$s" .agents/skills/
 done` },
         "Or download the install script, save it in `scripts/`, and run `bash scripts/install-research-skills.sh`.",
@@ -197,7 +197,7 @@ done` },
             ["`database-lookup`", "Reproducible queries against named public databases"],
             ["`scientific-critical-thinking`", "Auditing claims and evidence quality"],
             ["`scientific-writing`", "Reports that stay tied to evidence"],
-            ["`pdf`, `markitdown`", "Reading and converting PDFs and Office files"]
+            ["`liteparse`, `markitdown`", "Reading PDFs (with OCR for scans) and converting Office files. Both run locally."]
           ]
         } },
         { note: "caution", text: "Skills can tell the agent to run code, install packages, and contact outside services. Read each `SKILL.md` before you rely on it. The full collection has 166 skills; install only what you need." }

@@ -95,7 +95,7 @@ mkdir -p sources outputs scripts` },
   https://github.com/K-Dense-AI/scientific-agent-skills.git /tmp/sci-skills
 mkdir -p .agents/skills
 for s in paper-lookup citation-management database-lookup \\
-         scientific-critical-thinking scientific-writing pdf markitdown; do
+         scientific-critical-thinking scientific-writing liteparse markitdown; do
   cp -R "/tmp/sci-skills/skills/$s" .agents/skills/
 done` },
         "The next time you start Pi here, it asks whether to trust the project, because project skills can instruct the model to run code. Read the skills, then trust the project. Use `/trust` to save the decision.",

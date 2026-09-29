@@ -21,7 +21,7 @@ CORE_SKILLS=(
   database-lookup
   scientific-critical-thinking
   scientific-writing
-  pdf
+  liteparse
   markitdown
   exploratory-data-analysis
   statistical-analysis

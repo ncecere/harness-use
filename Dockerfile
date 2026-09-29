@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/ncecere/harness-use" \
       org.opencontainers.image.licenses="UNLICENSED"
 
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --chown=101:101 index.html favicon.svg /usr/share/nginx/html/
+COPY --chown=101:101 index.html library.html favicon.svg /usr/share/nginx/html/
 COPY --chown=101:101 css /usr/share/nginx/html/css
 COPY --chown=101:101 fonts /usr/share/nginx/html/fonts
 COPY --chown=101:101 js /usr/share/nginx/html/js
