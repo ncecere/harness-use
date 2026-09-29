@@ -18,6 +18,7 @@ code {
   padding: .12em .35em; border: var(--border-width) solid var(--color-border); border-radius: 3px;
   background: var(--color-surface-muted); color: var(--color-label);
   font: 500 .88em/1 var(--font-mono);
+  overflow-wrap: anywhere;  /* long paths and calls wrap on phones instead of widening the page */
 }
 [hidden] { display: none !important; }
 

@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glossary &amp; FAQ · Harness Kits · University of Florida</title>
+  <meta name="description" content="Plain definitions for AI agent terms, and answers to common questions about cost, data, models, and tools at UF.">
+  <meta name="theme-color" content="#002657">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Anybody.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/IBMPlexSans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/kits.js" defer></script>
+  <script src="js/glossary.js" defer></script>
+  <script src="js/glossary-page.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#faq">Skip to the FAQ</a>
+
+  <header class="masthead">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="Harness Kits home">
+        <img class="uf-logo" src="img/uf-logo-white-orange.svg" alt="University of Florida" width="190" height="34">
+        <span class="site-name"><b>Harness Kits</b><small>AI workspace setup guides</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="./#data">Data rules</a>
+        <a href="./#kits">All kits</a>
+        <a href="./examples.html">Examples</a>
+        <a href="./library.html">Library</a>
+        <a href="./glossary.html" aria-current="page">Glossary &amp; FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap lib-hero" aria-labelledby="gl-title">
+      <div>
+        <p class="label accent">Reference</p>
+        <h1 id="gl-title" class="display">Glossary <span class="accent">&amp; FAQ</span></h1>
+        <p class="lede">Common questions about cost, data, and choosing tools, followed by plain definitions of the terms the kits use.</p>
+      </div>
+    </section>
+
+    <section class="wrap block faq" id="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <span class="sec" aria-hidden="true">01</span>
+        <h2 id="faq-title">Common questions</h2>
+        <p>Short answers, with links to the kit that covers each one in full.</p>
+      </div>
+      <div class="trouble faq-list">
+        <details id="cost">
+          <summary><span>How much does this cost?</span></summary>
+          <div class="faq-body">
+            <p>Every UF student, faculty member, and staff member gets a <strong>$100 monthly credit</strong> for NaviGator's local models. It resets at the start of each month, and personal keys are valid for one year. Cloud models are billed to a Toolkit team with a UFIT billing ID.</p>
+            <p>Use is counted in tokens. In <a href="examples.html">our example runs</a>, a quick lookup used about 30,000 input tokens and extracting one table from a long PDF used about 5 million, because the agent re-read the document many times. To see what you've used, open <a href="https://api.ai.it.ufl.edu/ui">NaviGator AI Toolkit</a> and select your key's Key ID.</p>
+            <p>To use less: save converted documents to files and point the agent at the part you need, turn off MCP servers you aren't using, and start a new session for a new task.</p>
+          </div>
+        </details>
+        <details id="sensitive">
+          <summary><span>Can I use these tools with sensitive or restricted data?</span></summary>
+          <div class="faq-body">
+            <p>Yes, with NaviGator's local models and a workspace with no outside connections. <a href="kits/sensitive-data/">Kit 01</a> sets that up and tests it. Anything that searches the web or calls an outside service (web search, PubMed, many MCP servers) is for open data only, even with a local model.</p>
+            <p>The model's approval doesn't change where your data may be stored or what your IRB protocol and data agreements say. If you're unsure, ask your unit's data steward.</p>
+          </div>
+        </details>
+        <details id="copilot">
+          <summary><span>Is Microsoft 365 Copilot approved for sensitive data?</span></summary>
+          <div class="faq-body">
+            <p>No. Use Microsoft 365 Copilot with open data only. For sensitive or restricted data, use NaviGator Chat with a local model. <a href="kits/office-work/">Kit 30</a> matches office tools to data classes.</p>
+          </div>
+        </details>
+        <details id="which-model">
+          <summary><span>Which model should I use?</span></summary>
+          <div class="faq-body">
+            <p>The kits use <code>meta-muse-glimmer-30b</code> for research and <code>gpt-oss-120b</code> for coding. Both are local, so they work with any data class. Agents need a model that handles tool calls well; larger models usually do better on long, multi-step tasks. The <a href="https://docs.ai.it.ufl.edu/docs/navigator_models/">NaviGator model list</a> shows every model and its approved data classes.</p>
+          </div>
+        </details>
+        <details id="opencode-or-pi">
+          <summary><span>OpenCode, OpenCode Desktop, or Pi?</span></summary>
+          <div class="faq-body">
+            <p><strong>OpenCode</strong> asks before commands and web access, has separate Plan and Build agents, and has a desktop app. It's the easier start, and the better choice when you want approvals. <strong>OpenCode Desktop</strong> is the same agent in a window, if you'd rather not work in a terminal. <strong>Pi</strong> is small and easy to extend. It doesn't ask before tool calls, so you limit what it can do by choosing its tools when you start it.</p>
+          </div>
+        </details>
+        <details id="where-data-goes">
+          <summary><span>Where do my prompts and files go? Are they used for training?</span></summary>
+          <div class="faq-body">
+            <p>Requests to local models go to UF datacenters. Requests to cloud models go to Microsoft, Amazon, or Google under UF agreements that don't allow training on your data. Tools that search the web, fetch pages, or query outside databases send those queries to the outside service. Sessions are saved on your computer, and they include what the agent read.</p>
+          </div>
+        </details>
+        <details id="wrong">
+          <summary><span>How do I know the agent's answer is right?</span></summary>
+          <div class="faq-body">
+            <p>Check it against the source. Ask for scripts instead of answers worked out in the model's head, ask the agent to count what it produced, and verify citations against PubMed or Crossref. The <a href="examples.html">worked examples</a> show where each check caught a real mistake.</p>
+          </div>
+        </details>
+        <details id="windows">
+          <summary><span>Does this work on Windows?</span></summary>
+          <div class="faq-body">
+            <p>OpenCode Desktop runs natively on Windows. For the terminal version of OpenCode and for Pi, use WSL2 (Windows Subsystem for Linux) and follow the Linux / WSL steps in each kit.</p>
+          </div>
+        </details>
+        <details id="coding">
+          <summary><span>Do I need to know how to program?</span></summary>
+          <div class="faq-body">
+            <p>No, but you'll copy a few commands into a terminal during setup. OpenCode Desktop needs the fewest. For research tasks the agent writes the scripts; you should be able to read what it plans to run before you approve it.</p>
+          </div>
+        </details>
+        <details id="disclose">
+          <summary><span>Do I need to disclose AI use in my work?</span></summary>
+          <div class="faq-body">
+            <p>Check your journal's, funder's, and course's policies first. Many require you to say which tool you used and how. Some prohibit AI in certain tasks: NIH, for example, <a href="https://grants.nih.gov/grants/guide/notice-files/NOT-OD-23-149.html">doesn't allow peer reviewers to use generative AI</a> on applications they review. Keep a record of the model, the date, and how you checked the output.</p>
+          </div>
+        </details>
+        <details id="help">
+          <summary><span>Where do I get help?</span></summary>
+          <div class="faq-body">
+            <p>For NaviGator accounts, keys, and teams, <a href="https://ufl.teamdynamix.com/TDClient/33/IT-Portal/Requests/ServiceDet?ID=413">open a UFIT request</a> or read the <a href="https://docs.ai.it.ufl.edu/">NaviGator AI docs</a>. For review search strategies, UF Libraries offers <a href="https://arcs.uflib.ufl.edu/services/systematic-reviews/">systematic review support</a>. OpenCode and Pi are open-source projects maintained by others; their docs are linked from each kit.</p>
+            <p>Want an assistant that answers questions from your unit's documents and web pages? That's <a href="https://it.ufl.edu/ai/navigator-assistant/">NaviGator Assistant</a>, which UFIT sets up for departments.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap block" id="glossary" aria-labelledby="terms-title">
+      <div class="section-head">
+        <span class="sec" aria-hidden="true">02</span>
+        <h2 id="terms-title">Glossary</h2>
+        <p>Every term has its own link, so you can share a definition: <code>glossary.html#context-window</code>.</p>
+      </div>
+      <div class="lib-controls gl-controls">
+        <div class="lib-search">
+          <label for="gl-q">Filter</label>
+          <input id="gl-q" type="search" placeholder="token, MCP, permission…" autocomplete="off" spellcheck="false">
+        </div>
+        <ol class="gl-letters" id="gl-letters" aria-label="Jump to letter"></ol>
+        <p class="lib-count" id="gl-count" role="status" aria-live="polite"></p>
+      </div>
+      <div id="gl-terms">
+        <noscript><p>The glossary needs JavaScript to display. The terms are in <code>js/glossary.js</code>.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <img class="uf-logo" src="img/uf-logo-white-orange.svg" alt="University of Florida" width="200" height="36">
+      <div>
+        <ul class="foot-links">
+          <li><a href="https://it.ufl.edu/ai/">UFIT Artificial Intelligence</a></li>
+          <li><a href="https://docs.ai.it.ufl.edu/">NaviGator AI docs</a></li>
+          <li><a href="https://api.ai.it.ufl.edu/ui">NaviGator AI Toolkit</a></li>
+          <li><a href="https://ufl.teamdynamix.com/TDClient/33/IT-Portal/Requests/ServiceDet?ID=413">Get help</a></li>
+        </ul>
+        <p>From the NaviGator AI team at UF Information Technology. OpenCode, OpenCode Desktop, Pi, and the research skills are open-source projects maintained by others. Review what you install.</p>
+        <p class="fine">Progress is saved in this browser only. No accounts, no tracking.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -21,6 +21,16 @@
   };
 
   /* ---------- install snippets ---------- */
+  /* JSON with short arrays of strings kept on one line, like hand-written config */
+  const json = (v, ind = "") => {
+    const next = ind + "  ";
+    if (Array.isArray(v) && v.every(x => typeof x !== "object")) return `[${v.map(x => JSON.stringify(x)).join(", ")}]`;
+    if (v && typeof v === "object") {
+      const keys = Object.keys(v);
+      return `{\n${keys.map(k => `${next}${JSON.stringify(k)}: ${json(v[k], next)}`).join(",\n")}\n${ind}}`;
+    }
+    return JSON.stringify(v);
+  };
   let codeId = 0;
   const panel = (label, text) => {
     const id = `lib-code-${++codeId}`;
@@ -61,9 +71,9 @@
     const secrets = Object.values(envs).filter(v => !v.startsWith("="));
     return `${setup}
       <p><strong>OpenCode and OpenCode Desktop:</strong> add this to <code>opencode.json</code>, next to <code>provider</code>.</p>
-      ${panel("<b>opencode.json</b> · mcp block", JSON.stringify({ mcp: { [key]: oc } }, null, 2))}
-      <p><strong>Pi:</strong> run <code>pi install npm:pi-mcp-adapter</code> once, then save this as <code>.mcp.json</code> in the workspace.</p>
-      ${panel("<b>.mcp.json</b>", JSON.stringify({ mcpServers: { [key]: pi } }, null, 2))}
+      ${panel("<b>opencode.json</b> · mcp block", json({ mcp: { [key]: oc } }))}
+      <p><strong>Pi:</strong> run <code>pi install npm:pi-mcp-adapter</code> once, then save this as <code>.mcp.json</code> in the workspace. Pi asks you to approve the server the first time it connects. Step-by-step: <a href="kits/connect-mcp/">Kit 12</a>.</p>
+      ${panel("<b>.mcp.json</b>", json({ mcpServers: { [key]: pi } }))}
       ${secrets.length ? `<p>Set ${secrets.map(v => `<code>${esc(v)}</code>`).join(" and ")} the same way you stored your NaviGator key, so the value never appears in the file.</p>` : ""}`;
   }
 

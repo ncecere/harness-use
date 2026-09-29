@@ -1,0 +1,43 @@
+/* =========================================================
+   GLOSSARY — data for glossary.html (rendered by js/glossary-page.js)
+   term   display name; the anchor is derived from it (glossary.html#context-window)
+   def    plain definition; `code` spans allowed
+   also   related terms (must match another term exactly)
+   see    kits that teach it: [slug, step id or ""]
+   ========================================================= */
+window.GLOSSARY = [
+  { term: "Agent", def: "An AI model that works in a loop: it reads a request, calls tools (read a file, run a command, search), looks at the results, and keeps going until the task is done or it needs you.", also: ["Harness", "Tool"], see: [["opencode-research", ""]] },
+  { term: "AGENTS.md", def: "A plain-text file of house rules in your workspace. OpenCode and Pi read it at the start of every session: which commands to use, what to never do, how to record sources.", also: ["Workspace", "Skill"], see: [["opencode-research", "rules"], ["sensitive-data", "rules"]] },
+  { term: "API key", def: "A secret string that lets a program use a service in your name. Your NaviGator key connects every kit to UF's models. Keep it out of files, prompts, and tickets.", also: ["NaviGator AI Toolkit", "Environment variable"], see: [["navigator-key", ""]] },
+  { term: "Base URL", def: "The web address a tool sends model requests to. For NaviGator AI Toolkit it's `https://api.ai.it.ufl.edu/v1`.", also: ["OpenAI-compatible API", "Provider"], see: [["navigator-key", ""]] },
+  { term: "Build agent", def: "OpenCode's default agent, which can edit files and run commands. Pair it with the Plan agent: plan first, then build.", also: ["Plan agent"], see: [["terminal-coding", ""]] },
+  { term: "Cloud model", def: "A model hosted by Microsoft, Amazon, or Google under UF agreements. Approved for open data only. In Toolkit, cloud models need a team with a UFIT billing ID.", also: ["Local model", "Data classification"], see: [["navigator-key", ""]] },
+  { term: "Compaction", def: "When a session gets close to the context window limit, the agent summarizes older messages to make room. Details can be lost, so save important results to files as you go.", also: ["Context window", "Session"], see: [] },
+  { term: "Context window", def: "How much text a model can consider at once: your messages, its replies, tool results, and instructions. Long documents and many tools fill it quickly.", also: ["Token", "Compaction"], see: [["connect-mcp", "choose"]] },
+  { term: "Data classification", def: "UF's three levels for data: open, sensitive, and restricted. It decides which models and services you may use. Local NaviGator models are approved for all three; cloud models and outside services for open data only.", also: ["Local model", "Cloud model"], see: [["sensitive-data", "check"]] },
+  { term: "Environment variable", def: "A named setting your terminal passes to programs, such as `NAVIGATOR_TOOLKIT_API_KEY`. Configs refer to it by name so the key never appears in a file. Apps opened from the Dock or Start menu may not see it.", also: ["API key"], see: [["navigator-key", ""]] },
+  { term: "Extension", def: "Pi's word for add-on code that adds tools or commands, installed with `pi install`. `pi-web-access` and `pi-mcp-adapter` are extensions. They run with your permissions.", also: ["Plugin", "Harness"], see: [["pi-research", ""]] },
+  { term: "Hallucination", def: "A confident answer that isn't true, such as a citation that doesn't exist. Tools that look things up, rules that forbid invention, and your own checks all reduce it.", also: ["Agent"], see: [["literature-review", "bibliography"]] },
+  { term: "Harness", def: "The program around a model that gives it tools, rules, and limits. OpenCode, OpenCode Desktop, and Pi are harnesses.", also: ["Agent", "Model"], see: [] },
+  { term: "Local model", def: "A NaviGator model that runs in UF datacenters. Approved for open, sensitive, and restricted data. Examples: `meta-muse-glimmer-30b`, `gpt-oss-120b`.", also: ["Cloud model", "Data classification"], see: [["sensitive-data", "connect"]] },
+  { term: "MCP", def: "Model Context Protocol: a standard way for a harness to connect to outside tools. One MCP server can work with OpenCode, Pi, and many other apps.", also: ["MCP server", "Tool"], see: [["connect-mcp", ""]] },
+  { term: "MCP server", def: "A small program, or a hosted service, that gives an agent new tools over MCP, such as a PubMed search or a file converter. Check where it sends data before you connect it.", also: ["MCP", "Skill"], see: [["connect-mcp", ""]] },
+  { term: "Model", def: "The AI that reads and writes text. The model does the reasoning; the harness gives it tools.", also: ["Harness", "Local model"], see: [] },
+  { term: "NaviGator AI Toolkit", def: "UF's service for using AI models from your own tools with an API key. Each personal key includes a monthly credit for local models.", also: ["API key", "Local model"], see: [["navigator-key", ""]] },
+  { term: "OpenAI-compatible API", def: "A common request format that many services use, including NaviGator. It's why OpenCode and Pi can connect to NaviGator with a base URL and key.", also: ["Base URL", "Provider"], see: [] },
+  { term: "Permission", def: "A setting that lets, asks about, or blocks a tool. In OpenCode you set `allow`, `ask`, or `deny` for edits, commands, and web access. Pi doesn't ask; you choose its tools when you start it.", also: ["Tool", "Plan agent"], see: [["sensitive-data", "connect"]] },
+  { term: "Plan agent", def: "OpenCode's read-only agent. It can look around and propose a plan but can't change files. Press Tab to switch between Plan and Build.", also: ["Build agent"], see: [["terminal-coding", ""]] },
+  { term: "Plugin", def: "OpenCode's word for add-on code in `.opencode/plugins/` that adds tools or behavior. Plugins run with the same access as OpenCode.", also: ["Extension"], see: [["opencode-research", "extend"]] },
+  { term: "Project trust", def: "Pi's check before loading settings, skills, or extensions from a folder. Approve a folder with `/trust` only if you trust what's in it.", also: ["Extension", "Skill"], see: [["pi-research", ""]] },
+  { term: "Prompt", def: "What you type to the agent. Good research prompts name the skill or tool, the evidence standard, and where to save results.", also: ["Agent"], see: [["opencode-research", "investigate"]] },
+  { term: "Prompt injection", def: "Instructions hidden in content the agent reads, such as a web page or a PDF, that try to steer it. House rules should say to treat retrieved content as data, never as instructions.", also: ["AGENTS.md"], see: [] },
+  { term: "PRISMA", def: "A reporting guideline for systematic reviews, including a flow diagram of how many records were found, screened, and included.", also: ["Screening"], see: [["literature-review", ""]] },
+  { term: "Provider", def: "A source of models in a harness's config. The kits define one provider, `navigator`, and limit OpenCode to it with `enabled_providers`.", also: ["Base URL"], see: [["opencode-research", "connect"]] },
+  { term: "Screening", def: "Deciding which search results meet a review's criteria, first by title and abstract, then by full text. An agent can do a first pass; a person makes the final call.", also: ["PRISMA"], see: [["literature-review", "screen"]] },
+  { term: "Session", def: "One conversation with the agent, saved as a transcript. Transcripts contain everything the agent read, so treat them like the data itself.", also: ["Compaction"], see: [["sensitive-data", "finish"]] },
+  { term: "Skill", def: "A folder with a `SKILL.md` file of instructions, and sometimes scripts, that the agent loads when a task calls for it. OpenCode and Pi both read skills from `.agents/skills/`.", also: ["MCP server", "AGENTS.md"], see: [["opencode-research", "skills"]] },
+  { term: "Subagent", def: "A helper agent the main agent starts for one part of a task, such as a separate literature search. It keeps the main conversation shorter.", also: ["Agent"], see: [] },
+  { term: "Token", def: "The unit models read and write, roughly three-quarters of a word. Usage and spend are counted in tokens, input and output separately.", also: ["Context window"], see: [] },
+  { term: "Tool", def: "An action the agent can take, such as reading a file, running a command, fetching a web page, or searching PubMed.", also: ["Agent", "Permission"], see: [] },
+  { term: "Workspace", def: "The folder for one project: your sources, outputs, scripts, rules, and config. Keep one workspace per project.", also: ["AGENTS.md"], see: [["opencode-research", "workspace"]] }
+];

@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "pubmed": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@cyanheads/pubmed-mcp-server@latest"
+      ]
+    },
+    "markitdown": {
+      "command": "uvx",
+      "args": [
+        "markitdown-mcp"
+      ]
+    }
+  }
+}

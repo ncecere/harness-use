@@ -1,0 +1,50 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": [
+    "navigator"
+  ],
+  "model": "navigator/meta-muse-glimmer-30b",
+  "small_model": "navigator/meta-muse-glimmer-30b",
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "provider": {
+    "navigator": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NaviGator AI Toolkit",
+      "options": {
+        "baseURL": "https://api.ai.it.ufl.edu/v1",
+        "apiKey": "{env:NAVIGATOR_TOOLKIT_API_KEY}"
+      },
+      "models": {
+        "meta-muse-glimmer-30b": {
+          "name": "Meta Muse Glimmer 30B (local)"
+        }
+      }
+    }
+  },
+  "permission": {
+    "bash": "ask",
+    "edit": "allow",
+    "webfetch": "ask",
+    "websearch": "ask",
+    "external_directory": "ask"
+  },
+  "mcp": {
+    "pubmed": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@cyanheads/pubmed-mcp-server@latest"
+      ]
+    },
+    "markitdown": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "markitdown-mcp"
+      ]
+    }
+  }
+}

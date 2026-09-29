@@ -41,7 +41,7 @@
   const pad = n => String(n).padStart(2, "0");
 
   /* ---------- blocks ---------- */
-  let codeId = 0;
+  let codeId = 0, tableId = 0;
   function block(b, ctx) {
     if (typeof b === "string") return `<p>${inline(b)}</p>`;
     if (b.h) return `<h3>${inline(b.h)}</h3>`;
@@ -64,7 +64,8 @@
     }
     if (b.table) {
       const { head, rows } = b.table;
-      return `<div class="table-wrap" tabindex="0" role="region" aria-label="Table, scrolls sideways on small screens"><table class="spec-table"><thead><tr>${head.map(h => `<th scope="col">${inline(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => i ? `<td>${inline(c)}</td>` : `<th scope="row">${inline(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      const tableLabel = `Table ${++tableId}: ${head.map(h => String(h).replace(/[`*]/g, "")).join(", ")}`;
+      return `<div class="table-wrap" tabindex="0" role="region" aria-label="${esc(tableLabel)}"><table class="spec-table"><thead><tr>${head.map(h => `<th scope="col">${inline(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => i ? `<td>${inline(c)}</td>` : `<th scope="row">${inline(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`;
     }
     if (b.files) return `<ul class="downloads">${b.files.map(f => `<li><a href="${ROOT}${f.href}" download="${esc(f.name)}">${esc(f.name)}</a></li>`).join("")}</ul>`;
     if (b.os) {

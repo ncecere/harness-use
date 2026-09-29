@@ -65,7 +65,9 @@
   color: var(--color-label); font: 600 .66rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em;
 }
 .tag-mcp { background: var(--color-surface-muted); }
-.tag-reviewed { border-color: var(--color-yes); background: var(--color-yes); color: var(--color-text-inverse); }
+/* green edge and check mark; text stays Dark Blue, since white on Gator green is below AA at this size */
+.tag-reviewed { display: inline-flex; align-items: center; gap: .35em; border-color: var(--color-yes); border-width: 2px; background: color-mix(in srgb, var(--color-yes) 10%, white); }
+.tag-reviewed::before { content: "" / ""; width: .3em; height: .6em; margin-top: -.15em; border: solid var(--color-yes); border-width: 0 2px 2px 0; rotate: 40deg; }
 .tag-listed { border-style: dashed; }
 .lib-sum { max-width: 72ch; margin: var(--space-3) 0; }
 

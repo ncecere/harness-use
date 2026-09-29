@@ -1,0 +1,3 @@
+# Keep the data and agent transcripts out of git.
+data/
+.pi-sessions/

@@ -23,10 +23,15 @@ window.Icons = (() => {
     terminal: () => svg("0 0 64 64", `
       <rect x="8" y="12" width="48" height="40" rx="3" class="ln"/><path d="M8 20h48" class="ln"/>
       <path d="M16 30l7 6l-7 6" class="hl"/><path d="M28 42h12" class="ln"/>`),
-    editor: () => svg("0 0 64 64", `
-      <rect x="6" y="10" width="52" height="44" rx="3" class="ln"/><path d="M18 10v44" class="ln"/>
-      <path d="M24 20h14M24 26h20M24 32h10" class="ln"/><path d="M24 38h22" class="hl"/>
-      <path d="M44 44h10v6l-4-3h-6Z" class="ln"/>`),
+    lock: () => svg("0 0 64 64", `
+      <rect x="12" y="28" width="40" height="28" rx="3" class="ln"/><path d="M20 28v-8a12 12 0 0 1 24 0v8" class="ln"/>
+      <circle cx="32" cy="40" r="4" class="hl"/><path d="M32 44v6" class="hl"/>`),
+    plug: () => svg("0 0 64 64", `
+      <path d="M22 8v12M42 8v12" class="ln"/><path d="M14 20h36v10a18 18 0 0 1-36 0Z" class="ln"/>
+      <path d="M32 48v10" class="ln"/><path d="M26 32h12" class="hl"/>`),
+    review: () => svg("0 0 64 64", `
+      <path d="M10 12h44l-16 20v18l-12 6V32Z" class="ln"/>
+      <path d="M20 18h24" class="hl"/><path d="M46 44h10M46 50h10M46 56h6" class="ln"/>`),
     office: () => svg("0 0 64 64", `
       <path d="M8 8h26v34H8Z" class="ln"/><path d="M14 16h14M14 22h14M14 28h8" class="ln"/>
       <rect x="26" y="30" width="30" height="22" rx="2" class="ln"/><path d="M26 32l15 11l15-11" class="hl"/>`),

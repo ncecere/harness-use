@@ -21,7 +21,7 @@ window.SITE = {
 };
 
 window.SHELVES = [
-  { id: "start", n: "0", title: "Start here", blurb: "One key unlocks every kit that talks to NaviGator AI Toolkit." },
+  { id: "start", n: "0", title: "Start here", blurb: "Get your key, and set up a workspace for sensitive data if you have any." },
   { id: "research", n: "1", title: "Research", blurb: "Agents that search scholarly sources, pull data from PDFs, and check their own claims." },
   { id: "coding", n: "2", title: "Coding", blurb: "Coding agents in your terminal or on your desktop, with git as the undo button." },
   { id: "office", n: "3", title: "Office work", blurb: "Everyday writing, email, documents, and meetings, with the right tool for your data." }
@@ -39,6 +39,19 @@ window.KITS = [
     steps: 6,
     icon: "key",
     tools: ["NaviGator AI Toolkit"],
+    ready: true
+  },
+  {
+    slug: "sensitive-data",
+    code: "KIT 01",
+    shelf: "start",
+    title: "A Sensitive-Data Workspace",
+    tagline: "Local models only, no web access, and original files the agent can't change.",
+    level: "Start here",
+    minutes: 25,
+    steps: 8,
+    icon: "lock",
+    tools: ["OpenCode", "OpenCode Desktop", "Pi"],
     ready: true
   },
   {
@@ -65,6 +78,32 @@ window.KITS = [
     steps: 8,
     icon: "pi",
     tools: ["Pi", "Research skills", "Web access"],
+    ready: true
+  },
+  {
+    slug: "connect-mcp",
+    code: "KIT 12",
+    shelf: "research",
+    title: "Connect MCP Servers",
+    tagline: "Give your agent new tools, like a PubMed search or a local file converter.",
+    level: "Intermediate",
+    minutes: 25,
+    steps: 7,
+    icon: "plug",
+    tools: ["OpenCode", "OpenCode Desktop", "Pi", "MCP"],
+    ready: true
+  },
+  {
+    slug: "literature-review",
+    code: "KIT 13",
+    shelf: "research",
+    title: "Literature and Systematic Reviews",
+    tagline: "Logged searches, a first-pass screen you check, PRISMA counts, and verified citations.",
+    level: "Intermediate",
+    minutes: 90,
+    steps: 8,
+    icon: "review",
+    tools: ["OpenCode", "Pi", "Research skills"],
     ready: true
   },
   {
@@ -98,25 +137,12 @@ window.KITS = [
     code: "KIT 40",
     shelf: "research",
     title: "Data Analysis in Jupyter",
-    tagline: "Call NaviGator models from Python notebooks for coding, cleaning, and summaries.",
+    tagline: "Code survey responses, search text by meaning, and transcribe interviews from Python.",
     level: "Intermediate",
-    minutes: 30,
-    steps: 6,
+    minutes: 45,
+    steps: 7,
     icon: "notebook",
-    tools: ["Jupyter", "Python", "OpenAI SDK"],
-    ready: false
-  },
-  {
-    slug: "department-assistant",
-    code: "KIT 50",
-    shelf: "office",
-    title: "A Department Assistant",
-    tagline: "Answer common questions from your unit's own documents and web pages.",
-    level: "Departments",
-    minutes: 30,
-    steps: 6,
-    icon: "assistant",
-    tools: ["NaviGator Assistant"],
-    ready: false
+    tools: ["Jupyter", "Python", "Local models"],
+    ready: true
   }
 ];

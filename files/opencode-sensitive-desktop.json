@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": ["navigator"],
+  "model": "navigator/meta-muse-glimmer-30b",
+  "small_model": "navigator/meta-muse-glimmer-30b",
+  "share": "disabled",
+  "instructions": ["AGENTS.md"],
+  "provider": {
+    "navigator": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "NaviGator AI Toolkit (local models only)",
+      "options": {
+        "baseURL": "https://api.ai.it.ufl.edu/v1",
+        "apiKey": "{file:~/.config/navigator/key}"
+      },
+      "models": {
+        "meta-muse-glimmer-30b": { "name": "Meta Muse Glimmer 30B (local)" },
+        "gpt-oss-120b": { "name": "GPT-OSS 120B (local)" }
+      }
+    }
+  },
+  "permission": {
+    "webfetch": "deny",
+    "websearch": "deny",
+    "external_directory": "deny",
+    "edit": {
+      "*": "allow",
+      "data/*": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "curl *": "deny",
+      "wget *": "deny",
+      "ssh *": "deny",
+      "scp *": "deny",
+      "rsync *": "deny",
+      "git push*": "deny"
+    }
+  }
+}

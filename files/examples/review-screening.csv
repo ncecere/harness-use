@@ -1,0 +1,80 @@
+record_id,decision,reason
+PubMed_41313172,exclude,Exclude: does not meet concept/intervention (company-level study)
+PubMed_38586582,exclude,Exclude: population not patients receiving care (students)
+PubMed_38148485,include,Include: meets all eligibility criteria
+PubMed_37721793,include,Include: meets all eligibility criteria
+PubMed_35895904,exclude,Exclude: physical health care without mental health component
+PubMed_35682512,include,Include: meets all eligibility criteria
+PubMed_34617337,exclude,Exclude: year outside 2020-2025 and concept not telehealth mental health delivery
+PubMed_33952313,exclude,Exclude: protocol
+PubMed_33622818,exclude,"Exclude: does not meet concept/intervention (capacity study, not mental health)"
+PubMed_33354054,exclude,Exclude: review/commentary
+PubMed_33022079,include,Include: meets all eligibility criteria
+PubMed_32543751,exclude,Exclude: does not meet concept/intervention (COVID susceptibility)
+PubMed_32019430,include,Include: meets all eligibility criteria
+PubMed_41367981,exclude,Exclude: children or adolescents only
+PubMed_41199204,exclude,Exclude: studies outside the United States
+PubMed_40881040,exclude,Exclude: not empirical study (commentary/perspective)
+PubMed_40693254,include,Include: meets all eligibility criteria
+PubMed_39992746,exclude,Exclude: does not meet concept/intervention (cost analysis)
+PubMed_36422884,include,Include: meets all eligibility criteria
+PubMed_35838414,exclude,Exclude: does not meet concept/intervention (adoption/barriers)
+PubMed_35584317,exclude,Exclude: population is professionals not patients
+PubMed_33289790,exclude,Exclude: position paper
+PubMed_33112761,include,Include: meets all eligibility criteria
+PubMed_32608282,exclude,Exclude: does not meet population/setting criteria
+PubMed_31475879,exclude,Exclude: does not meet concept/intervention (adoption study)
+PubMed_40498257,exclude,Exclude: children or adolescents only
+PubMed_40233260,exclude,Exclude: does not meet concept/intervention (provider enrollment)
+PubMed_40040465,include,Include: meets all eligibility criteria
+PubMed_38867390,unsure,Unsure: unclear if study reports care delivery to patients
+PubMed_37991899,exclude,Exclude: no rural population
+PubMed_37863356,include,Include: meets all eligibility criteria
+PubMed_36735933,exclude,Exclude: physical health care without mental health component
+PubMed_36636266,exclude,Exclude: physical health care without mental health component
+PubMed_35475403,include,Include: meets all eligibility criteria
+PubMed_35065189,exclude,Exclude: editorial
+PubMed_34846613,unsure,"Unsure: population includes youth, unclear adult focus"
+PubMed_34656133,exclude,Exclude: physical health care without mental health component
+PubMed_35769171,exclude,Exclude: population is providers not patients
+PubMed_33827497,exclude,Exclude: does not meet concept/intervention (adoption study)
+PubMed_32816644,include,Include: meets all eligibility criteria
+OpenAlex_W3049547760,exclude,Exclude: no rural population
+OpenAlex_W3048791385,exclude,Exclude: does not meet concept/intervention (surveillance)
+OpenAlex_W3012290708,exclude,Exclude: does not meet concept/intervention (global)
+OpenAlex_W3046280637,exclude,Exclude: systematic review
+OpenAlex_W3030637260,exclude,Exclude: does not meet concept/intervention (multi-country)
+OpenAlex_W3194750316,exclude,Exclude: narrative review
+OpenAlex_W4308369850,exclude,Exclude: guideline
+OpenAlex_W3021121149,exclude,Exclude: commentary
+OpenAlex_W3028903160,exclude,Exclude: commentary
+OpenAlex_W3081553985,exclude,Exclude: does not meet concept/intervention
+OpenAlex_W3128534511,exclude,Exclude: systematic review
+OpenAlex_W3092940381,exclude,Exclude: scoping review
+OpenAlex_W3047855061,unsure,Unsure: mental health focus unclear
+OpenAlex_W4366818779,exclude,Exclude: physical health care without mental health component and scoping review
+OpenAlex_W3022380838,exclude,Exclude: studies outside the United States
+OpenAlex_W4210468276,exclude,Exclude: overview/recommendations not empirical
+OpenAlex_W3014180232,exclude,Exclude: commentary
+OpenAlex_W4324309277,exclude,Exclude: does not meet concept/intervention
+OpenAlex_W3036841064,exclude,Exclude: physical health care without mental health component
+OpenAlex_W3025156353,exclude,Exclude: opinion
+OpenAlex_W3110009469,unsure,Unsure: focus unclear from abstract
+OpenAlex_W3024600721,exclude,Exclude: physical health care without mental health component
+OpenAlex_W3198223216,exclude,Exclude: children or adolescents only
+OpenAlex_W3135375419,exclude,Exclude: studies outside the United States
+OpenAlex_W3173538575,unsure,Unsure: rural focus unclear
+OpenAlex_W3185220037,exclude,Exclude: does not meet concept/intervention
+OpenAlex_W4283313052,exclude,Exclude: does not meet concept/intervention
+OpenAlex_W4295902037,exclude,Exclude: children or adolescents only
+OpenAlex_W4283695295,exclude,Exclude: does not meet concept/intervention
+OpenAlex_W4280556216,exclude,Exclude: commission paper not empirical
+OpenAlex_W4376149498,exclude,Exclude: systematic review
+OpenAlex_W3038070845,exclude,Exclude: studies outside the United States
+OpenAlex_W4292471409,unsure,Unsure: mental health focus unclear
+OpenAlex_W4309312736,exclude,Exclude: overview
+OpenAlex_W4288069255,include,Include: meets all eligibility criteria
+OpenAlex_W3040316091,exclude,Exclude: systematic review
+OpenAlex_W3101956050,exclude,Exclude: does not meet concept/intervention (adoption)
+OpenAlex_W3143535127,unsure,Unsure: focus unclear
+OpenAlex_W3110179718,exclude,Exclude: studies outside the United States

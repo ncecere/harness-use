@@ -133,6 +133,7 @@ what needs a decision. Say "not stated" instead of guessing.` }
     ["A notebook answer seems wrong", "Select its citation and read the passage. If the source doesn't support it, tell the notebook and ask again."]
   ],
   refs: [
+    ["NaviGator Assistant (for departments; request through UFIT)", "https://it.ufl.edu/ai/navigator-assistant/"],
     ["Microsoft Copilot at UF", "https://it.ufl.edu/ai/microsoft-copilot/"],
     ["NaviGator Chat", "https://it.ufl.edu/ai/navigator-chat/"],
     ["NaviGator Notebook", "https://it.ufl.edu/ai/navigator-notebook/"],
@@ -141,5 +142,5 @@ what needs a decision. Say "not stated" instead of guessing.` }
     ["UF Data Classification Policy", "https://policy.ufl.edu/policy/data-classification-policy/"],
     ["UF AI services", "https://it.ufl.edu/ai/"]
   ],
-  next: ["navigator-key", "opencode-research"]
+  next: ["navigator-key", "data-notebooks"]
 };

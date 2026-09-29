@@ -31,3 +31,5 @@
 @import url("components/callout.css") layer(components);
 @import url("components/reference.css") layer(components);
 @import url("components/library.css") layer(components);
+@import url("components/examples.css") layer(components);
+@import url("components/glossary.css") layer(components);

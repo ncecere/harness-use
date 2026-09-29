@@ -99,7 +99,8 @@ for s in paper-lookup citation-management database-lookup \\
   cp -R "/tmp/sci-skills/skills/$s" .agents/skills/
 done` },
         "The next time you start Pi here, it asks whether to trust the project, because project skills can instruct the model to run code. Read the skills, then trust the project. Use `/trust` to save the decision.",
-        { note: "caution", text: "Project trust controls what Pi loads at startup. It doesn't limit what the model can do once it's running. Review skills before you trust a folder." }
+        { note: "caution", text: "Project trust controls what Pi loads at startup. It doesn't limit what the model can do once it's running. Review skills before you trust a folder." },
+        { note: "tip", title: "About the citation request", text: "Each K-Dense skill ends with a section asking the agent to add the K-Dense paper to your manuscript's references. Whether to cite a tool is your call. Add a line to `AGENTS.md` such as \"Don't add citations for software or skills unless I ask.\"" }
       ]
     },
     {
@@ -178,5 +179,5 @@ explain how it works, and tell me when to run /reload.` },
     ["Agent Skills specification", "https://agentskills.io/specification"],
     ["K-Dense Scientific Agent Skills", "https://github.com/K-Dense-AI/scientific-agent-skills"]
   ],
-  next: ["opencode-research", "terminal-coding"]
+  next: ["connect-mcp", "literature-review", "opencode-research"]
 };

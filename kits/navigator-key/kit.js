@@ -143,5 +143,5 @@ source ~/.bashrc` }
     ["Request a Toolkit team", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/getting_started/request-new-team"],
     ["Toolkit FAQ", "https://docs.ai.it.ufl.edu/docs/navigator_toolkit/FAQ"]
   ],
-  next: ["opencode-research", "pi-research", "terminal-coding"]
+  next: ["sensitive-data", "opencode-research", "pi-research"]
 };

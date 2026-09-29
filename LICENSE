@@ -1,0 +1,39 @@
+Harness Kits — licensing
+
+Copyright (c) 2026 Nicholas Cecere
+
+This project uses separate licenses for different kinds of material.
+
+1. Guide content: CC BY-NC 4.0
+   Kit text, worked examples, the glossary and FAQ, and the library
+   descriptions (kits/*/kit.js, examples.html, glossary.html, js/glossary.js,
+   and js/library.js) are licensed under the Creative Commons Attribution-NonCommercial 4.0
+   International License. Full text: LICENSE-CONTENT
+   https://creativecommons.org/licenses/by-nc/4.0/
+
+   You may share and adapt the material for non-commercial purposes, including
+   teaching and campus IT support, as long as you give credit ("Harness Kits"
+   by Nicholas Cecere) and link to the license.
+
+2. Code: MIT
+   The site's HTML structure, CSS, and JavaScript (index.html, library.html,
+   kits/*/index.html, css/, js/kit.js, js/kits.js, js/landing.js,
+   js/library-page.js, js/glossary-page.js, js/progress.js, js/icons.js),
+   the downloadable starter files in files/ (configs, scripts, house rules, and
+   the notebook, so you can copy them into your own projects), the files in
+   tools/, and the deployment files (Dockerfile, nginx/, .github/)
+   are licensed under the MIT License. Full text: LICENSE-CODE
+
+3. Fonts: SIL Open Font License 1.1
+   The fonts in fonts/ are not ours. Each is used under the SIL Open Font
+   License 1.1. See the OFL-*.txt files beside each font.
+
+4. University of Florida marks: not licensed
+   The UF logos in img/ are trademarks of the University of Florida. They are
+   not covered by any license in this repository. Don't reuse them outside
+   this site without UF's permission; see the UF Brand Center
+   (https://brandcenter.ufl.edu/).
+
+Third-party projects named on the site (OpenCode, Pi, the research skills,
+MCP servers, and others) are the work of their authors and carry their own
+licenses. Listing them here doesn't relicense them.

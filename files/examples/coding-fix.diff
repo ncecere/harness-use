@@ -1,0 +1,59 @@
+diff --git a/surveytools/__pycache__/scales.cpython-312.pyc b/surveytools/__pycache__/scales.cpython-312.pyc
+index 506d524..43132db 100644
+Binary files a/surveytools/__pycache__/scales.cpython-312.pyc and b/surveytools/__pycache__/scales.cpython-312.pyc differ
+diff --git a/surveytools/scales.py b/surveytools/scales.py
+index e0f1756..db708b0 100644
+--- a/surveytools/scales.py
++++ b/surveytools/scales.py
+@@ -3,7 +3,7 @@
+ 
+ def reverse_score(value, scale_max=5, scale_min=1):
+     """Reverse-score one Likert response (e.g. 1 <-> 5 on a 1-5 scale)."""
+-    return scale_max - value
++    return (scale_max + scale_min) - value
+ 
+ 
+ def scale_mean(responses, reverse_items=(), scale_max=5):
+@@ -13,8 +13,16 @@ def scale_mean(responses, reverse_items=(), scale_max=5):
+     reverse_items: item names to reverse-score before averaging.
+     """
+     total = 0
++    count = 0
+     for item, value in responses.items():
++        # Skip items that were not answered
++        if value is None:
++            continue
+         if item in reverse_items:
+             value = reverse_score(value, scale_max)
+         total += value
+-    return total / len(responses)
++        count += 1
++    # If no answered items, return None instead of dividing by zero
++    if count == 0:
++        return None
++    return total / count
+diff --git a/tests/test_scales.py b/tests/test_scales.py
+index 61f6b03..ea11379 100644
+--- a/tests/test_scales.py
++++ b/tests/test_scales.py
+@@ -14,3 +14,20 @@ def test_scale_mean_simple():
+ def test_scale_mean_with_reverse_item():
+     # q2 = 2 reversed is 4, so the mean of 4 and 4 is 4
+     assert scale_mean({"q1": 4, "q2": 2}, reverse_items={"q2"}) == 4
++
++
++def test_scale_mean_ignores_none():
++    # q2 is skipped; average of 4 and 2 is 3
++    responses = {"q1": 4, "q2": None, "q3": 2}
++    assert scale_mean(responses) == 3
++
++
++def test_scale_mean_with_reverse_and_none():
++    # q1 is reversed (2 -> 4); q2 is skipped
++    responses = {"q1": 2, "q2": None}
++    assert scale_mean(responses, reverse_items={"q1"}) == 4
++
++
++def test_scale_mean_all_none():
++    # No answered items -> result should be None
++    assert scale_mean({"q1": None, "q2": None}) is None

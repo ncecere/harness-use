@@ -249,5 +249,5 @@ git commit -m "Describe the change"` },
     ["Pi source and docs", "https://github.com/earendil-works/pi"],
     ["NaviGator models", "https://docs.ai.it.ufl.edu/docs/navigator_models/"]
   ],
-  next: ["opencode-research", "pi-research"]
+  next: ["opencode-research", "connect-mcp"]
 };

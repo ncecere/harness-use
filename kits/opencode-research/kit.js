@@ -158,6 +158,8 @@ Set-Content -NoNewline -Path "$env:USERPROFILE\.config\navigator\key" -Value $en
 ## Verification
 - Verify every DOI before reporting it.
 - Do not invent citations, URLs, authors, dates, figures, or quotes.
+- Cite only sources you used as evidence. Don't add citations for software,
+  skills, or tools unless I ask.
 - If a primary source cannot be located, say so.
 - Separate claims supported by primary evidence from claims
   supported only by secondary sources.
@@ -200,7 +202,8 @@ done` },
             ["`liteparse`, `markitdown`", "Reading PDFs (with OCR for scans) and converting Office files. Both run locally."]
           ]
         } },
-        { note: "caution", text: "Skills can tell the agent to run code, install packages, and contact outside services. Read each `SKILL.md` before you rely on it. The full collection has 166 skills; install only what you need." }
+        { note: "caution", text: "Skills can tell the agent to run code, install packages, and contact outside services. Read each `SKILL.md` before you rely on it. The full collection has 166 skills; install only what you need." },
+        { note: "tip", title: "About the citation request", text: "Each K-Dense skill ends with a section asking the agent to add the K-Dense paper to your manuscript's references and to look it up on arXiv. Whether to cite a tool is your call. The house rules in step 4 tell the agent not to add software citations unless you ask." }
       ]
     },
     {
@@ -286,5 +289,5 @@ Add it to this project, test it, and document it. I will restart OpenCode after.
     ["OpenCode permissions", "https://opencode.ai/docs/permissions/"],
     ["K-Dense Scientific Agent Skills", "https://github.com/K-Dense-AI/scientific-agent-skills"]
   ],
-  next: ["pi-research", "terminal-coding"]
+  next: ["literature-review", "connect-mcp", "pi-research"]
 };

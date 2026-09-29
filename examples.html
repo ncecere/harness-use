@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Worked Examples · Harness Kits · University of Florida</title>
+  <meta name="description" content="Real agent runs with NaviGator local models: what we asked, what the agent did, what we checked, and what went wrong.">
+  <meta name="theme-color" content="#002657">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Anybody.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/IBMPlexSans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <a class="skip" href="#runs">Skip to the examples</a>
+
+  <header class="masthead">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="Harness Kits home">
+        <img class="uf-logo" src="img/uf-logo-white-orange.svg" alt="University of Florida" width="190" height="34">
+        <span class="site-name"><b>Harness Kits</b><small>AI workspace setup guides</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="./#data">Data rules</a>
+        <a href="./#kits">All kits</a>
+        <a href="./examples.html" aria-current="page">Examples</a>
+        <a href="./library.html">Library</a>
+        <a href="./glossary.html">Glossary &amp; FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap lib-hero" aria-labelledby="ex-title">
+      <div>
+        <p class="label accent">Field notes · September 2026</p>
+        <h1 id="ex-title" class="display">Worked <span class="accent">Examples</span></h1>
+        <p class="lede">Real runs behind the kits. For each one: what we asked, what the agent did, what we checked by hand, and what went wrong.</p>
+      </div>
+      <dl class="kit-spec lib-spec">
+        <div><dt>Runs</dt><dd>6</dd></div>
+        <div><dt>Model</dt><dd>Local</dd></div>
+        <div><dt>Checked</dt><dd>By hand</dd></div>
+      </dl>
+    </section>
+
+    <section class="wrap lib-guide" aria-label="How these were run">
+      <div>
+        <h2>How we ran them</h2>
+        <p>OpenCode 1.18 and Pi 0.87 on a Mac, connected to the <strong>NaviGator development endpoint</strong> with NaviGator's local models: <code>meta-muse-glimmer-30b</code> for research and <code>gpt-oss-120b</code> for code. Results on the production service should be similar but can differ.</p>
+      </div>
+      <div>
+        <h2>What we changed</h2>
+        <p>To run unattended, commands were approved automatically. In your sessions the agent asks first. We used each kit's config and house rules as published, and we say when we changed them.</p>
+      </div>
+      <div>
+        <h2>What we checked</h2>
+        <p>Every number, citation, and code change below was checked against the source: PubMed, Crossref, the original PDF, or our own script. Time and token counts are from the agent's own logs.</p>
+      </div>
+    </section>
+
+    <div class="wrap ex-list" id="runs">
+
+      <article class="lib-item ex-item" id="sensitive-analysis" aria-labelledby="sensitive-analysis-h">
+        <header class="lib-head">
+          <h2 id="sensitive-analysis-h"><a href="#sensitive-analysis">Analyzing sensitive survey data</a></h2>
+          <p class="lib-tags"><span class="tag">OpenCode</span><span class="tag">glimmer-30b</span><a class="tag tag-kit" href="kits/sensitive-data/">Kit 01</a></p>
+        </header>
+        <p class="lib-sum">A theme summary of 40 coded interview records (fake data: names, ages, counties, themes, quotes), in the locked-down workspace from Kit 01.</p>
+        <div class="code prompt"><div class="code-bar"><span class="label">Prompt</span></div><pre tabindex="0" aria-label="Prompt"><code>Summarize data/interviews-coded.csv: how many participants mention each theme, overall and by county. Write a short report to outputs/theme-summary.md that follows the workspace rules.</code></pre></div>
+        <dl class="lib-meta">
+          <div><dt>What it did</dt><dd>Wrote <code>scripts/analyze_themes.py</code>, ran it, and wrote the report. 39 seconds.</dd></div>
+          <div><dt>We checked</dt><dd>Every count matched our own tally. Every county cell under 5 was suppressed. No names, IDs, or quotes appeared in the output, and <code>data/</code> was untouched.</dd></div>
+          <div><dt>Guardrails</dt><dd>With the rules file removed, we asked it to fetch a web page, search the web, run <code>curl</code>, edit a data file, and read <code>/etc/hosts</code>. All five were blocked by the config.</dd></div>
+          <div class="ex-warn"><dt>Watch for</dt><dd>The fake participant names appeared in OpenCode's session database because the agent read the CSV. Delete sessions when you're done. The model also retried the blocked <code>curl</code> five times before moving on.</dd></div>
+          <div><dt>Files</dt><dd><a href="files/examples/sensitive-theme-summary.md">theme-summary.md</a> · <a href="files/examples/sensitive-analyze_themes.py">analyze_themes.py</a></dd></div>
+        </dl>
+      </article>
+
+      <article class="lib-item ex-item" id="pubmed-mcp" aria-labelledby="pubmed-mcp-h">
+        <header class="lib-head">
+          <h2 id="pubmed-mcp-h"><a href="#pubmed-mcp">Searching PubMed through an MCP server</a></h2>
+          <p class="lib-tags"><span class="tag">OpenCode</span><span class="tag">Pi</span><span class="tag">glimmer-30b</span><a class="tag tag-kit" href="kits/connect-mcp/">Kit 12</a></p>
+        </header>
+        <p class="lib-sum">Five recent papers on rural telehealth, found with the PubMed MCP server and saved as a table.</p>
+        <div class="code prompt"><div class="code-bar"><span class="label">Prompt</span></div><pre tabindex="0" aria-label="Prompt"><code>Use the pubmed MCP tools to find 5 peer-reviewed papers from 2020 or later on telehealth use in rural areas of the United States. Save a table to outputs/pubmed-results.md with PMID, DOI, title, first author, journal, and year. Only include details the tools returned; do not fill anything in from memory.</code></pre></div>
+        <dl class="lib-meta">
+          <div><dt>What it did</dt><dd>Three PubMed searches, one fetch of five full records, and the table. 14 seconds. In Pi, a single-record lookup through <code>pi-mcp-adapter</code> took 6 seconds.</dd></div>
+          <div><dt>We checked</dt><dd>All five PMIDs, DOIs, titles, first authors, and years matched PubMed's own records. Nothing was invented.</dd></div>
+          <div class="ex-warn"><dt>Watch for</dt><dd>Relevance was mixed: one result was a position paper, and two were only partly about rural care. Accurate metadata doesn't mean the paper belongs in your review.</dd></div>
+          <div><dt>Files</dt><dd><a href="files/examples/mcp-pubmed-results.md">pubmed-results.md</a></dd></div>
+        </dl>
+      </article>
+
+      <article class="lib-item ex-item" id="pdf-table" aria-labelledby="pdf-table-h">
+        <header class="lib-head">
+          <h2 id="pdf-table-h"><a href="#pdf-table">A table from a government PDF to CSV</a></h2>
+          <p class="lib-tags"><span class="tag">OpenCode</span><span class="tag">glimmer-30b</span><a class="tag tag-kit" href="kits/opencode-research/">Kit 10</a></p>
+        </header>
+        <p class="lib-sum">Table 1 of the Census Bureau report <a href="https://www2.census.gov/library/publications/2024/demo/p60-284.pdf">Health Insurance Coverage in the United States: 2023</a> (P60-284, 28 pages), extracted locally with the <code>liteparse</code> skill.</p>
+        <div class="code prompt"><div class="code-bar"><span class="label">Prompt</span></div><pre tabindex="0" aria-label="Prompt"><code>Use the liteparse skill to extract Table 1 from sources/p60-284.pdf into outputs/table1.csv. Use one row per coverage type with columns: coverage_type, level, number_2022, moe_2022, number_2023, moe_2023, all in thousands as printed. Remove footnote markers from the labels. Record the PDF page and printed page number in outputs/table1-notes.md, along with the table's units and footnotes. Do the extraction with a script in scripts/.</code></pre></div>
+        <dl class="lib-meta">
+          <div><dt>What it did</dt><dd>Parsed the PDF on the Mac, found the table, and wrote a script that produced the CSV. About 3 minutes.</dd></div>
+          <div><dt>We checked</dt><dd>All 48 values (12 rows × 4 columns) matched the printed table. Footnote markers were removed from labels such as "Employment-based²", and both page numbers were right (PDF page 8, printed page 2).</dd></div>
+          <div class="ex-warn"><dt>Watch for</dt><dd>The footnotes in the notes file were garbled: text from the next column was mixed in. The run also used about 5 million input tokens, because the agent re-read parser output many times.</dd></div>
+          <div><dt>Files</dt><dd><a href="files/examples/extract-table1.csv">table1.csv</a></dd></div>
+        </dl>
+      </article>
+
+      <article class="lib-item ex-item" id="markitdown" aria-labelledby="markitdown-h">
+        <header class="lib-head">
+          <h2 id="markitdown-h"><a href="#markitdown">Reading a paper with a local converter</a></h2>
+          <p class="lib-tags"><span class="tag">OpenCode</span><span class="tag">glimmer-30b</span><a class="tag tag-kit" href="kits/connect-mcp/">Kit 12</a></p>
+        </header>
+        <p class="lib-sum">The 15-page paper "Attention Is All You Need" converted to Markdown with the MarkItDown MCP server, then questioned about its results.</p>
+        <dl class="lib-meta">
+          <div><dt>What it did</dt><dd>Converted the PDF, listed its numbered headings two levels deep (19 in all; it skipped the third-level 3.2.1–3.2.3), and reported both BLEU scores from the results table, quoting the table row. 81 seconds.</dd></div>
+          <div><dt>We checked</dt><dd>The scores (28.4 and 41.8) and the listed headings match the paper.</dd></div>
+          <div class="ex-warn"><dt>Watch for</dt><dd>Some lines lost the spaces between words ("EncoderandDecoderStacks"). The session used about 625,000 input tokens, because the full text went into the context more than once.</dd></div>
+        </dl>
+      </article>
+
+      <article class="lib-item ex-item" id="lit-review" aria-labelledby="lit-review-h">
+        <header class="lib-head">
+          <h2 id="lit-review-h"><a href="#lit-review">A practice scoping review, start to bibliography</a></h2>
+          <p class="lib-tags"><span class="tag">OpenCode</span><span class="tag">glimmer-30b</span><a class="tag tag-kit" href="kits/literature-review/">Kit 13</a></p>
+        </header>
+        <p class="lib-sum">Telehealth for adult mental health care in the rural United States, 2020–2025: searches in PubMed and OpenAlex, deduplication, title-and-abstract screening, PRISMA counts, and a BibTeX file. Five prompts in one workspace.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-labelledby="lit-review-h">
+          <table class="spec-table ex-table">
+            <caption class="sr-only">Steps of the practice review with time, what happened, and what we found</caption>
+            <thead><tr><th scope="col">Step</th><th scope="col">Time</th><th scope="col">Result</th><th scope="col">What we found</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Search</th><td>53 s</td><td>80 records, both searches logged</td><td>All 40 PubMed abstracts were empty (a parser bug), and the date limit used entry date instead of publication date.</td></tr>
+              <tr><th scope="row">Check</th><td>3.7 min</td><td>Both bugs found and fixed</td><td>PubMed count went from 55 to 58, matching our own query. Its fix for one bad year was a special case, not a general rule.</td></tr>
+              <tr><th scope="row">Screen (first try)</th><td>69 s</td><td>19 include, 6 exclude, 54 unsure</td><td>It wrote keyword rules instead of reading: <code>app</code> matched "approach". Our house rules were too vague. We fixed them.</td></tr>
+              <tr><th scope="row">Screen (again)</th><td>2.4 min</td><td>13 include, 59 exclude, 7 unsure</td><td>8 of 13 includes were right. 18 of 20 sampled excludes were defensible; one gave a false reason.</td></tr>
+              <tr><th scope="row">Bibliography</th><td>39 s</td><td>13 BibTeX entries</td><td>Every DOI resolved and every title matched Crossref. Three used the online-first year.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <dl class="lib-meta">
+          <div class="ex-warn"><dt>Watch for</dt><dd>Twice the agent said "done" when the output was wrong. The check prompt in Kit 13, step 4, caught the first problem; reading the screening file caught the second.</dd></div>
+          <div><dt>Files</dt><dd><a href="files/examples/review-search-log.md">search-log.md</a> · <a href="files/examples/review-screening.csv">screening.csv</a> · <a href="files/examples/review-prisma-counts.md">prisma-counts.md</a> · <a href="files/examples/review-included.bib">included.bib</a></dd></div>
+        </dl>
+      </article>
+
+      <article class="lib-item ex-item" id="coding" aria-labelledby="coding-h">
+        <header class="lib-head">
+          <h2 id="coding-h"><a href="#coding">Fixing a bug in survey-scoring code</a></h2>
+          <p class="lib-tags"><span class="tag">OpenCode</span><span class="tag">gpt-oss-120b</span><a class="tag tag-kit" href="kits/terminal-coding/">Kit 20</a></p>
+        </header>
+        <p class="lib-sum">A small Python package that scores Likert items. Two tests failed, and skipped answers (<code>None</code>) crashed the mean. We used the Plan agent first, then Build.</p>
+        <div class="code prompt"><div class="code-bar"><span class="label">Prompt · Plan agent</span></div><pre tabindex="0" aria-label="Prompt for the Plan agent"><code>Two tests in tests/test_scales.py fail. Find the cause. Also, survey respondents sometimes skip items; those arrive as None and scale_mean should ignore them. Propose a plan: the code changes and the new tests. Don't edit anything yet.</code></pre></div>
+        <dl class="lib-meta">
+          <div><dt>What it did</dt><dd>Plan (25 s): found that <code>reverse_score</code> ignored the scale minimum, and proposed skipping <code>None</code>, dividing by answered items, and three new tests. Build (29 s): made the changes, and all 6 tests passed. It didn't commit, as its house rules say.</dd></div>
+          <div><dt>We checked</dt><dd>The diff is correct. We tested extra cases (0–4 and 1–7 scales, all items skipped); all were right.</dd></div>
+          <div class="ex-warn"><dt>Watch for</dt><dd>Reading the diff found a gap the agent missed: <code>scale_mean</code> can't pass a scale minimum to <code>reverse_score</code>, so a reverse-scored item on a 0–4 scale is still wrong. Passing tests aren't the same as correct code.</dd></div>
+          <div><dt>Files</dt><dd><a href="files/examples/coding-fix.diff">coding-fix.diff</a></dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <section class="wrap block lib-extra" id="lessons" aria-labelledby="lessons-title">
+      <div class="section-head">
+        <span class="sec" aria-hidden="true">+</span>
+        <h2 id="lessons-title">What the runs have in common</h2>
+        <p>These are the habits that caught every problem above.</p>
+      </div>
+      <ul class="lib-dirs">
+        <li><b>Ask for a script, not an answer</b><span>Counts, extractions, and deduplication done by a saved script can be rerun and checked. Numbers the model works out in its head can't.</span></li>
+        <li><b>"Done" isn't proof</b><span>Ask the agent to count what it produced: rows, empty fields, values outside the expected range. That's how the empty abstracts turned up.</span></li>
+        <li><b>Say what's a judgment</b><span>When a rule said "use scripts", the agent scripted screening too. Say which steps need reading and deciding.</span></li>
+        <li><b>Check against the source</b><span>Citations against PubMed or Crossref, table values against the page, code against the diff. The agent was right most of the time, which makes the misses easy to overlook.</span></li>
+        <li><b>Watch the tokens</b><span>Long documents and repeated reads add up fast: 5 million input tokens for one table. Save converted text to a file and point the agent at the part you need.</span></li>
+        <li><b>Transcripts keep everything</b><span>Whatever the agent reads ends up in its session history. Treat transcripts like the data itself.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <img class="uf-logo" src="img/uf-logo-white-orange.svg" alt="University of Florida" width="200" height="36">
+      <div>
+        <ul class="foot-links">
+          <li><a href="https://it.ufl.edu/ai/">UFIT Artificial Intelligence</a></li>
+          <li><a href="https://docs.ai.it.ufl.edu/">NaviGator AI docs</a></li>
+          <li><a href="https://api.ai.it.ufl.edu/ui">NaviGator AI Toolkit</a></li>
+          <li><a href="https://ufl.teamdynamix.com/TDClient/33/IT-Portal/Requests/ServiceDet?ID=413">Get help</a></li>
+        </ul>
+        <p>From the NaviGator AI team at UF Information Technology. The interview data in the first example is synthetic. Every other source is public.</p>
+        <p class="fine">Progress is saved in this browser only. No accounts, no tracking.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

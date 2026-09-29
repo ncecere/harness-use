@@ -1,0 +1,19 @@
+/* ---------- worked examples (examples.html); builds on library.css ---------- */
+.ex-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-5); padding-top: var(--space-6); }
+.ex-item { padding: var(--space-5) var(--space-6); }
+.ex-item .lib-head h2 { margin: 0; font: 700 var(--text-lg)/1.3 var(--font-body); }
+.ex-item .lib-head h2 a { color: var(--color-primary-strong); text-decoration: none; }
+.ex-item .lib-head h2 a:hover { text-decoration: underline; }
+.ex-item > .code { margin: var(--space-3) 0 var(--space-4); }
+.ex-item .lib-meta div { grid-template-columns: 8rem minmax(0, 1fr); }
+.ex-item .table-wrap { margin: var(--space-2) 0 var(--space-4); }
+.ex-table th[scope="row"] { white-space: nowrap; }
+.ex-warn { padding: var(--space-2) var(--space-3); margin-inline: calc(-1 * var(--space-3)); border-left: var(--border-accent-width) solid var(--color-note-caution); background: var(--color-surface-muted); }
+.tag-kit { background: var(--color-primary-strong); border-color: var(--color-primary-strong); color: var(--color-text-inverse); text-decoration: none; }
+.tag-kit:hover { background: var(--color-primary); color: var(--color-text-inverse); }
+@media (max-width: 560px) {
+  .ex-item { padding: var(--space-4); }
+  .ex-item .lib-meta div { grid-template-columns: 1fr; }
+  .ex-warn { margin-inline: 0; }
+}
+.ex-table td:nth-child(2) { white-space: nowrap; }
