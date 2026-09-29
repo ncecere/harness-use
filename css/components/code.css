@@ -1,0 +1,27 @@
+/* ---------- code panels + prompt cards ---------- */
+.code { border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius); overflow: hidden; background: var(--color-code-bg); }
+.code-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: .45rem .5rem .45rem .85rem;
+  border-bottom: var(--border-width) solid rgba(255, 255, 255, .14); background: color-mix(in srgb, var(--color-code-bg) 88%, white);
+}
+.code-bar .label { color: var(--color-text-inverse); opacity: .92; }
+.code-bar .label b { color: var(--color-code-accent); font-weight: 700; }
+.code pre { margin: 0; padding: var(--space-4) 1.1rem; overflow-x: auto; color: var(--color-code-text); font: 400 .86rem/1.65 var(--font-mono); tab-size: 2; }
+.code pre code { padding: 0; border: 0; background: none; color: inherit; font: inherit; }
+
+.copy {
+  cursor: pointer; padding: .4em .7em; border: var(--border-width) solid rgba(255, 255, 255, .45); border-radius: 3px; background: transparent;
+  color: var(--color-text-inverse); font: 600 .68rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em;
+}
+.copy:hover { background: rgba(255, 255, 255, .12); }
+.copy[data-copied] { border-color: var(--color-code-accent); color: var(--color-code-accent); }
+
+/* prompts: things you type to the agent, printed on light paper */
+.code.prompt { border-color: var(--color-border); border-left: var(--border-accent-width) solid var(--color-accent); background: var(--color-surface-muted); }
+.code.prompt .code-bar { border-bottom-color: var(--color-border); background: transparent; }
+.code.prompt .code-bar .label { color: var(--color-label); }
+.code.prompt pre { color: var(--color-text); font-family: var(--font-body); font-size: .98rem; white-space: pre-wrap; }
+.code.prompt .copy { border-color: var(--color-border-strong); color: var(--color-label); }
+.code.prompt .copy:hover { background: var(--color-surface); }
+.code.prompt .copy[data-copied] { border-color: var(--color-yes); color: var(--color-yes); }
+.code-bar .label b { text-transform: none; letter-spacing: .02em; }  /* file names keep their real case */

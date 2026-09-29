@@ -1,0 +1,23 @@
+/* ---------- sticky kit control bar + segmented controls ---------- */
+.kit-bar { position: sticky; top: 0; z-index: 20; border-block: var(--border-width) solid var(--color-border); background: color-mix(in srgb, var(--color-surface) 94%, transparent); backdrop-filter: blur(6px); }
+.kit-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); padding-block: .6rem; }
+.kit-bar .progress { display: flex; align-items: center; gap: var(--space-3); margin-left: auto; color: var(--color-label); font: 600 var(--text-xs)/1 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; }
+.kit-bar .progress .meter { width: 120px; height: 6px; margin: 0; overflow: hidden; border-radius: 3px; background: var(--color-surface-muted); border: var(--border-width) solid var(--color-border); }
+.kit-bar .progress .meter i { display: block; height: 100%; width: 0; background: var(--color-accent); transition: width var(--duration) var(--ease); }
+
+.segmented { display: inline-flex; align-items: center; gap: var(--space-2); margin: 0; padding: 0; border: 0; }
+.segmented legend, .segmented .seg-label { float: left; margin-right: var(--space-2); padding: 0; color: var(--color-text-muted); font: 500 .68rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-label); }
+.segmented .options { display: inline-flex; border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius); overflow: hidden; }
+.segmented button {
+  cursor: pointer; padding: .5em .8em; border: 0; background: var(--color-surface); color: var(--color-label);
+  font: 600 var(--text-xs)/1 var(--font-mono); letter-spacing: .04em;
+}
+.segmented button + button { border-left: var(--border-width) solid var(--color-border-strong); }
+.segmented button:hover { background: var(--color-surface-muted); }
+.segmented button[aria-pressed="true"] { background: var(--color-primary-strong); color: var(--color-text-inverse); }
+.segmented button:focus-visible { outline-offset: -3px; }
+/* on small screens the bar scrolls away instead of covering the steps */
+@media (max-width: 960px) {
+  .kit-bar { position: static; }
+  .kit-bar .progress { margin-left: 0; }
+}

@@ -1,0 +1,13 @@
+/* ---------- "how the parts fit" row ---------- */
+.parts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: var(--border-width) solid var(--color-border); border-radius: var(--radius); }
+.parts li { padding: 1.4rem var(--space-5) 1.6rem; }
+.parts li + li { border-left: var(--border-width) solid var(--color-border); }
+.parts h3 {
+  margin: var(--space-2) 0; color: var(--color-primary);
+  font: var(--display-weight) var(--text-xl)/1.05 var(--font-display); font-stretch: 78%; text-transform: var(--display-case);
+}
+.parts p { margin: 0; }
+@media (max-width: 960px) {
+  .parts { grid-template-columns: 1fr; }
+  .parts li + li { border-left: 0; border-top: var(--border-width) solid var(--color-border); }
+}

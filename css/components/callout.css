@@ -1,0 +1,22 @@
+/* ---------- callouts: data, caution, tip, check ---------- */
+.callout {
+  --callout-color: var(--color-note-data);
+  position: relative; padding: .9rem 1.1rem .95rem 3.1rem;
+  border: var(--border-width) solid var(--color-border); border-left: var(--border-accent-width) solid var(--callout-color);
+  border-radius: var(--radius); background: color-mix(in srgb, var(--callout-color) 6%, var(--color-surface));
+}
+.callout::before {
+  content: var(--callout-mark, "i"); position: absolute; left: .95rem; top: .95rem; display: grid; place-items: center;
+  width: 1.35rem; height: 1.35rem; border-radius: 50%; background: var(--callout-color); color: var(--color-text-inverse);
+  font: 700 .78rem/1 var(--font-mono);
+}
+.callout-title { margin: 0 0 .2rem; color: var(--color-label); font: 700 var(--text-xs)/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-label); }
+.callout p { margin: 0; }
+.callout p + p { margin-top: var(--space-2); }
+
+.callout[data-kind="data"] { --callout-color: var(--color-note-data); --callout-mark: "D"; }
+.callout[data-kind="caution"] { --callout-color: var(--color-note-caution); --callout-mark: "!"; }
+.callout[data-kind="tip"] { --callout-color: var(--color-note-tip); --callout-mark: "+"; }
+.callout[data-kind="check"] { --callout-color: var(--color-note-check); --callout-mark: "✓"; }
+/* the tip mark sits on light gold, so it prints dark */
+.callout[data-kind="tip"]::before { color: var(--color-heading); }

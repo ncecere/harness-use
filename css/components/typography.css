@@ -1,0 +1,32 @@
+/* ---------- labels, display type, section heads ---------- */
+.label {
+  margin: 0; color: var(--color-label);
+  font: 600 var(--text-xs)/1.3 var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-label);
+}
+/* accented label: text stays in primary (small orange text is below AA), orange bar marks it */
+.label.accent { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-primary); }
+.label.accent::before { content: ""; width: 1.6rem; height: 3px; background: var(--color-accent); }
+
+.display {
+  margin: 0; color: var(--color-heading);
+  font: var(--display-weight) var(--text-display)/.92 var(--font-display); font-stretch: var(--display-stretch);
+  text-transform: var(--display-case); letter-spacing: -.005em;
+}
+.display .accent { color: var(--color-primary); }
+
+.section-head {
+  display: grid; grid-template-columns: auto 1fr; align-items: end; gap: var(--space-2) var(--space-5);
+  margin: 0 0 var(--space-6); padding-bottom: var(--space-4); border-bottom: 2px solid var(--color-border-strong);
+}
+.section-head .sec {
+  grid-row: span 2; align-self: stretch; display: flex; align-items: flex-end;
+  color: var(--color-accent); font: var(--display-weight) 3.2rem/.8 var(--font-display); font-stretch: var(--display-stretch);
+}
+.section-head h2 {
+  margin: 0; color: var(--color-heading);
+  font: var(--display-weight) var(--text-2xl)/1 var(--font-display); font-stretch: var(--display-stretch); text-transform: var(--display-case);
+}
+.section-head p { margin: 0; max-width: 62ch; color: var(--color-text-muted); }
+
+.lede { max-width: 44ch; margin: var(--space-5) 0 var(--space-6); font-size: clamp(1.08rem, 1.4vw, var(--text-lg)); line-height: 1.55; }
+.source { margin: var(--space-3) 0 0; color: var(--color-text-muted); font-size: var(--text-sm); }

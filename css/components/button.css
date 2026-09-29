@@ -1,0 +1,17 @@
+/* ---------- buttons ---------- */
+.btn {
+  --btn-fg: var(--color-text-inverse);
+  --btn-bg: var(--color-primary);
+  --btn-border: var(--color-primary);
+  display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer; text-decoration: none;
+  padding: .95em 1.25em; border: 2px solid var(--btn-border); border-radius: var(--radius);
+  color: var(--btn-fg); background: var(--btn-bg);
+  font: 600 .84rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em;
+  transition: background-color var(--duration) ease, border-color var(--duration) ease, color var(--duration) ease;
+}
+.btn:hover { --btn-bg: var(--color-primary-strong); --btn-border: var(--color-primary-strong); color: var(--btn-fg); }
+.btn.secondary { --btn-fg: var(--color-primary); --btn-bg: var(--color-surface); }
+.btn.secondary:hover { --btn-fg: var(--color-primary-strong); --btn-bg: var(--color-surface-muted); }
+.btn .arrow { display: inline-block; transition: translate var(--duration) var(--ease); }
+.btn:hover .arrow { translate: 3px 0; }
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--space-3); }

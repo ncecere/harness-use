@@ -1,0 +1,13 @@
+{
+  "providers": {
+    "navigator": {
+      "baseUrl": "https://api.ai.it.ufl.edu/v1",
+      "api": "openai-completions",
+      "apiKey": "$NAVIGATOR_TOOLKIT_API_KEY",
+      "models": [
+        { "id": "meta-muse-glimmer-30b" },
+        { "id": "gpt-oss-120b" }
+      ]
+    }
+  }
+}

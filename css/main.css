@@ -1,0 +1,32 @@
+/* =========================================================
+   ENTRY POINT — imports the tokens and component modules in
+   cascade layers. Pages link only this file.
+
+   tokens      design values (css/tokens.css)
+   base        reset and layout primitives (css/base.css)
+   components  one file per component (css/components/*.css)
+
+   Add a component: create css/components/<name>.css and
+   import it below. Components use semantic tokens only.
+   ========================================================= */
+@layer tokens, base, components;
+
+@import url("tokens.css") layer(tokens);
+@import url("base.css") layer(base);
+
+@import url("components/typography.css") layer(components);
+@import url("components/button.css") layer(components);
+@import url("components/masthead.css") layer(components);
+@import url("components/footer.css") layer(components);
+@import url("components/figure.css") layer(components);
+@import url("components/table.css") layer(components);
+@import url("components/hero.css") layer(components);
+@import url("components/parts.css") layer(components);
+@import url("components/card.css") layer(components);
+@import url("components/kit-header.css") layer(components);
+@import url("components/segmented.css") layer(components);
+@import url("components/procedure.css") layer(components);
+@import url("components/step.css") layer(components);
+@import url("components/code.css") layer(components);
+@import url("components/callout.css") layer(components);
+@import url("components/reference.css") layer(components);

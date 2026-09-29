@@ -1,0 +1,49 @@
+/* ---------- a procedure step ---------- */
+.step { padding-bottom: var(--space-7); margin-bottom: var(--space-7); border-bottom: var(--border-width) solid var(--color-border); scroll-margin-top: 5rem; }
+.step-head { display: grid; grid-template-columns: auto 1fr; gap: var(--space-4) var(--space-5); align-items: end; margin-bottom: var(--space-5); }
+.step-no {
+  min-width: 3.4rem; color: var(--color-accent);
+  font: var(--display-weight) 4rem/.78 var(--font-display); font-stretch: 70%;  /* large type: orange passes AA */
+}
+.step-head .label { margin-bottom: var(--space-2); }
+.step-head h2 {
+  margin: 0; color: var(--color-heading);
+  font: var(--display-weight) clamp(1.6rem, 2.6vw, 2.15rem)/1.02 var(--font-display); font-stretch: 76%; text-transform: var(--display-case);
+}
+.step.is-done .step-no { color: var(--color-yes); }
+
+/* step content */
+.step-body { max-width: 74ch; }
+.step-body > * + * { margin-top: var(--space-4); }
+.step-body p { margin: 0; }
+.step-body ul, .step-body ol { margin-bottom: 0; padding-left: 1.3rem; }
+.step-body li + li { margin-top: var(--space-2); }
+.step-body li::marker { color: var(--color-primary); font-weight: 700; }
+.step-body h3 { margin: var(--space-6) 0 0; color: var(--color-heading); font: 700 var(--text-lg)/1.2 var(--font-body); }
+.step-body .table-wrap { font-size: .94rem; }
+.step-body .spec-table th, .step-body .spec-table td { padding: .7rem .85rem; }
+.step-body .spec-table tbody th { color: var(--color-heading); font-weight: 600; }
+
+.downloads { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.downloads a {
+  display: inline-flex; align-items: center; gap: var(--space-2); padding: .5em .75em;
+  border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius);
+  color: var(--color-primary); font: 600 var(--text-xs)/1 var(--font-mono); text-decoration: none;
+}
+.downloads a::before { content: "↓" / ""; color: var(--color-accent); font-weight: 700; }
+.downloads a:hover { background: var(--color-surface-muted); }
+
+/* complete-step toggle */
+.step-foot { margin-top: var(--space-6); }
+.step-check {
+  display: inline-flex; align-items: center; gap: var(--space-3); cursor: pointer; padding: .7em 1em .7em .75em;
+  border: var(--border-width) solid var(--color-border-strong); border-radius: var(--radius); background: var(--color-surface);
+  color: var(--color-label); font: 600 .78rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: .06em;
+}
+.step-check::before { content: ""; width: 1.1rem; height: 1.1rem; border: 2px solid var(--color-border-strong); border-radius: 2px; background: var(--color-surface); }
+.step-check:hover { background: var(--color-surface-muted); }
+.step-check[aria-pressed="true"] { border-color: var(--color-yes); color: var(--color-yes); }
+.step-check[aria-pressed="true"]::before { border-color: var(--color-yes); background: var(--color-yes) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3l7-7' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+.step-body .downloads { padding-left: 0; }
+/* OS and tool groups wrap blocks, so they need the same rhythm inside */
+.step-body :is(.os-group, .variant-group) > * + * { margin-top: var(--space-4); }

@@ -1,0 +1,97 @@
+/* =========================================================
+   TOKENS — every design value lives here.
+   Components use only the semantic tokens (--color-*, --font-*,
+   --space-*, ...). To restyle the site, change this file.
+
+   Palette values from the UF Brand Center (brandcenter.ufl.edu/colors).
+   Brand rules: orange and blue lead; secondary colors are small
+   accents; white space is a feature; black is for body copy only.
+   ========================================================= */
+@font-face { font-family: "Anybody"; src: url(../fonts/Anybody.woff2) format("woff2"); font-weight: 100 900; font-stretch: 50% 150%; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url(../fonts/IBMPlexSans.woff2) format("woff2"); font-weight: 100 700; font-stretch: 85% 100%; font-style: normal; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url(../fonts/IBMPlexSans-Italic.woff2) format("woff2"); font-weight: 100 700; font-stretch: 85% 100%; font-style: italic; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url(../fonts/IBMPlexMono-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url(../fonts/IBMPlexMono-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+@font-face { font-family: "IBM Plex Mono"; src: url(../fonts/IBMPlexMono-700.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  /* ---------- brand palette (raw values; use semantic tokens below) ---------- */
+  --uf-core-orange: #fa4616;
+  --uf-core-blue: #0021a5;
+  --uf-dark-blue: #002657;
+  --uf-alachua: #f2a900;
+  --uf-gator: #22884c;
+  --uf-bottlebrush: #d32737;
+  --uf-perennial: #6a2a60;
+  --uf-cool-grey-11: #343741;
+  --uf-cool-grey-3: #c7c9c8;
+  --uf-warm-grey-1: #d8d4d7;
+  --uf-white: #fff;
+  --uf-black: #000;
+
+  /* ---------- semantic color ---------- */
+  --color-bg: var(--uf-white);
+  --color-surface: var(--uf-white);
+  --color-surface-muted: #f5f6f8;
+  --color-surface-inverse: var(--uf-dark-blue);
+  --color-text: var(--uf-black);               /* body copy */
+  --color-text-muted: var(--uf-cool-grey-11);
+  --color-text-inverse: var(--uf-white);
+  --color-heading: var(--uf-dark-blue);
+  --color-label: var(--uf-dark-blue);          /* labels, meta, UI text */
+  --color-primary: var(--uf-core-blue);        /* links, buttons, titles */
+  --color-primary-strong: var(--uf-dark-blue);
+  --color-accent: var(--uf-core-orange);       /* rules, numbers, highlights (large or non-text only) */
+  --color-border: rgba(0, 38, 87, .18);
+  --color-border-strong: var(--uf-dark-blue);
+  --color-grid: rgba(0, 38, 87, .07);
+  --color-disabled: var(--uf-cool-grey-3);
+  --color-focus: var(--uf-core-orange);
+  --color-selection: color-mix(in srgb, var(--uf-core-orange) 28%, white);
+  --color-code-bg: var(--uf-dark-blue);
+  --color-code-text: #eef1f8;
+  --color-code-accent: #ffb59c;                /* light orange for prompts in code panels */
+  --color-yes: var(--uf-gator);
+  --color-no: var(--uf-bottlebrush);
+  --color-note-data: var(--uf-core-blue);
+  --color-note-caution: var(--uf-core-orange);
+  --color-note-tip: var(--uf-alachua);
+  --color-note-check: var(--uf-gator);
+
+  /* ---------- type ---------- */
+  --font-display: "Anybody", "Arial Narrow", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --display-stretch: 72%;       /* Anybody width axis */
+  --display-weight: 800;
+  --display-case: uppercase;
+
+  --text-xs: .72rem;
+  --text-sm: .88rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.2rem;
+  --text-xl: 1.5rem;
+  --text-2xl: clamp(1.8rem, 3.2vw, 2.5rem);
+  --text-display: clamp(2.8rem, 6.4vw, 5.2rem);
+  --leading-tight: 1;
+  --leading-body: 1.65;
+  --tracking-label: .1em;
+
+  /* ---------- space, shape, depth, motion ---------- */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --page-width: 1200px;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+  --radius: 4px;
+  --border-width: 1px;
+  --border-accent-width: 3px;
+  --shadow: 0 1px 2px rgba(0, 38, 87, .06), 0 8px 24px rgba(0, 38, 87, .08);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --duration: .2s;
+}

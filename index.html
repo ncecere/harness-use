@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harness Kits · Set up AI workspaces with NaviGator AI · University of Florida</title>
+  <meta name="description" content="Step-by-step setup guides for AI workspaces at the University of Florida: research agents, coding agents, and office tools connected to NaviGator AI.">
+  <meta name="theme-color" content="#002657">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/Anybody.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/IBMPlexSans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/kits.js" defer></script>
+  <script src="js/progress.js" defer></script>
+  <script src="js/icons.js" defer></script>
+  <script src="js/landing.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#kits">Skip to the kits</a>
+
+  <div class="utility">
+    <div class="wrap"><span>NaviGator AI · UF Information Technology</span><span><a href="https://it.ufl.edu/ai/">it.ufl.edu/ai</a></span></div>
+  </div>
+  <header class="masthead">
+    <div class="wrap">
+      <a class="brand" href="./" aria-label="Harness Kits home">
+        <img class="uf-logo" src="img/uf-logo-blue-orange.svg" alt="University of Florida" width="190" height="34">
+        <span class="site-name"><b>Harness Kits</b><small>AI workspace setup guides</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Site">
+        <a href="#harness">How it fits</a>
+        <a href="#data">Data rules</a>
+        <a href="#kits">All kits</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="label accent">Field manual · Revision 2026.09</p>
+          <h1 id="hero-title" class="display">Set up your <span class="accent">AI workspace</span></h1>
+          <p class="lede">Step-by-step kits for research agents, coding agents, and everyday office tools at UF. Each kit connects a tool to NaviGator AI, so your work runs on UF services and follows UF data rules.</p>
+          <div class="cta-row">
+            <a class="btn" href="kits/navigator-key/">Start with Kit 00 <span class="arrow" aria-hidden="true">→</span></a>
+            <a class="btn secondary" href="#kits">Browse all kits</a>
+          </div>
+          <dl class="hero-spec">
+            <div><dt>Kits</dt><dd id="spec-kits">6</dd></div>
+            <div><dt>Time per kit</dt><dd>10–45 min</dd></div>
+            <div><dt>Account</dt><dd>GatorLink</dd></div>
+          </dl>
+        </div>
+        <figure class="fig raised">
+          <div class="fig-body" data-icon="anatomy"></div>
+          <figcaption><span><b>Fig. 1</b> Anatomy of an AI workspace</span><span>1 Files · 2 Models · 3 Web</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="wrap block" id="harness" aria-labelledby="harness-title">
+      <div class="section-head">
+        <span class="sec" aria-hidden="true">01</span>
+        <h2 id="harness-title">How the parts fit</h2>
+        <p>A harness is the app around an AI model. It gives the model tools, and you decide what it may do. Every kit follows the same assembly.</p>
+      </div>
+      <ol class="parts">
+        <li>
+          <p class="label">Part A</p>
+          <h3>The model</h3>
+          <p>The AI that reads and writes. At UF you reach models through <strong>NaviGator AI Toolkit</strong>: local models on HiPerGator and approved cloud models.</p>
+        </li>
+        <li>
+          <p class="label">Part B</p>
+          <h3>The harness</h3>
+          <p>OpenCode, Pi, Cline, or Copilot. It lets the model read files, run commands, and search, and it asks for approval where you set it to.</p>
+        </li>
+        <li>
+          <p class="label">Part C</p>
+          <h3>Your configuration</h3>
+          <p>House rules in <code>AGENTS.md</code>, skills for your field, plugins you build, and permissions that match your data.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="wrap block" id="data" aria-labelledby="data-title">
+      <div class="section-head">
+        <span class="sec" aria-hidden="true">02</span>
+        <h2 id="data-title">Data rules</h2>
+        <p>Read this before any kit. Where a model runs decides which data you can send it.</p>
+      </div>
+      <div class="table-wrap">
+        <table class="spec-table">
+          <caption class="sr-only">Approved UF data classifications by where the work runs</caption>
+          <thead>
+            <tr><th scope="col">Where it runs</th><th scope="col">Open</th><th scope="col">Sensitive</th><th scope="col">Restricted</th><th scope="col">Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row"><span class="where">Local models</span><span class="sub">HiPerGator</span></th><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td>Included with every personal Toolkit key. Tagged <strong>local</strong> in NaviGator Chat.</td></tr>
+            <tr><th scope="row"><span class="where">Cloud models</span><span class="sub">Microsoft, Amazon, Google</span></th><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td>Covered by UF agreements and not used for training. In Toolkit, cloud models require a team with a UFIT billing ID.</td></tr>
+            <tr><th scope="row"><span class="where">Web &amp; outside APIs</span><span class="sub">Search, scholarly APIs, page fetches</span></th><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td>These requests leave UF, even when the model is local. Keep private details out of anything sent to the web.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source">Sources: <a href="https://docs.ai.it.ufl.edu/docs/navigator_models/">NaviGator AI model list</a> · <a href="https://policy.ufl.edu/policy/data-classification-policy/">UF Data Classification Policy</a>. If you're unsure how your data is classified, ask your unit's data owner.</p>
+    </section>
+
+    <section class="wrap block" id="kits" aria-labelledby="kits-title">
+      <div class="section-head">
+        <span class="sec" aria-hidden="true">03</span>
+        <h2 id="kits-title">The kits</h2>
+        <p>Start with Kit 00 to get your key. After that, take any kit in any order. Your progress is saved in this browser.</p>
+      </div>
+      <div id="shelves">
+        <noscript><p>The kit list needs JavaScript. Each kit is also available at <code>kits/&lt;name&gt;/</code>.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <img class="uf-logo" src="img/uf-logo-white-orange.svg" alt="University of Florida" width="200" height="36">
+      <div>
+        <ul class="foot-links">
+          <li><a href="https://it.ufl.edu/ai/">UFIT Artificial Intelligence</a></li>
+          <li><a href="https://docs.ai.it.ufl.edu/">NaviGator AI docs</a></li>
+          <li><a href="https://api.ai.it.ufl.edu/ui">NaviGator AI Toolkit</a></li>
+          <li><a href="https://ufl.teamdynamix.com/TDClient/33/IT-Portal/Requests/ServiceDet?ID=413">Get help</a></li>
+        </ul>
+        <p>From the NaviGator AI team at UF Information Technology. OpenCode, Pi, Cline, and the research skills are open-source projects maintained by others. Review what you install.</p>
+        <p class="fine">Progress is saved in this browser only. No accounts, no tracking.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+/* =========================================================
+   BASE — reset, document defaults, and layout primitives.
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--color-bg); color: var(--color-text);
+  font: 400 var(--text-base)/var(--leading-body) var(--font-body);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, svg { max-width: 100%; }
+a { color: var(--color-primary); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: var(--color-primary-strong); text-decoration-color: var(--color-accent); }
+:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+::selection { background: var(--color-selection); }
+strong { font-weight: 600; }
+code {
+  padding: .12em .35em; border: var(--border-width) solid var(--color-border); border-radius: 3px;
+  background: var(--color-surface-muted); color: var(--color-label);
+  font: 500 .88em/1 var(--font-mono);
+}
+[hidden] { display: none !important; }
+
+/* layout */
+.wrap { width: min(var(--page-width), 100% - 2 * var(--page-gutter)); margin-inline: auto; }
+.block { padding-top: clamp(var(--space-7), 6vw, var(--space-8)); scroll-margin-top: var(--space-4); }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip {
+  position: absolute; left: var(--space-4); top: -4rem; z-index: 200; padding: var(--space-3) var(--space-4);
+  background: var(--color-surface-inverse); color: var(--color-text-inverse);
+  font: 700 var(--text-sm)/1 var(--font-mono); text-decoration: none;
+}
+.skip:focus { top: var(--space-4); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
